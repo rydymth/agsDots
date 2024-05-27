@@ -22,11 +22,14 @@ batteryTooltip.child.child.hook(battery, () => {
     }
     if (!globalThis.notifies && battery.percent <= 30 && !battery.charging)
     {
-        Utils.notify({
-            summary: "LOW BATTERY",
-            body: "Connect to the charger NOW",
-            iconName: "dialog-warning-symbolic"
-        })
+        try{
+            Utils.notify({
+                summary: "LOW BATTERY",
+                body: "Connect to the charger NOW",
+                iconName: "dialog-warning-symbolic"
+            })
+        }
+        catch(e) { console.log(e)}
         globalThis.notifies = true            
     }
     if (globalThis.notifies && battery.charging)

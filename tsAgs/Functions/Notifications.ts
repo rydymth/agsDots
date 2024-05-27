@@ -3,7 +3,8 @@ import { Notification } from "types/service/notifications"
 import GLib from "gi://GLib"
 
 notifs.popupTimeout = 7000
-function getATagContents(htmlString) {
+
+function getATagContents(htmlString: string) {
     if (htmlString[0] === "<")
     {
         var regex = /<[^>]*>/g;
@@ -107,30 +108,43 @@ export const notificationPopupBody = (n: Notification) => {
             on_primary_click: () => n.invoke(a.id)
         }))
     })
-     
-    const closeButton = Widget.Box({
+
+    const closeButtonIcon = () => Widget.Box({
         class_name: "CloseNotif",
-        hpack: "end",
-        vpack: "start",
         child: Widget.EventBox({
             on_primary_click: () => {
                 if (n.popup)
                     n.dismiss()
                 else n.close()
             },
-            child: Widget.Icon("window-close-symbolic")
+            child: Widget.Icon({icon: "window-close-symbolic"})
         })
     })
-    
-    const notifImageShort = Widget.Box({
-        css: `background-image: url("${n.image}"); min-width: 15px; min-height: 15px; background-position: center; background-repeat: no-repeat; background-size: cover`,
-        class_name: "notifImage",
+
+    const t = Variable(notifs.popupTimeout)
+
+    const closeButton = Widget.EventBox({
         hpack: "end",
-        vpack: "center",
+        vpack: "start",
         hexpand: true,
-        vexpand: true
+        vexpand: true,
+        child: Widget.CircularProgress({
+            start_at: 0.75,
+            css: "font-size: 3px; min-height: 20px; min-width: 20px",
+            child: Widget.Icon({icon: "window-close-symbolic", size: 15}),
+            value: t.bind().as(v => v/notifs.popupTimeout),
+            setup: self => self.poll(100, () => {
+                if (t.value === 0)
+                    n.dismiss()
+                if (n.popup)
+                {
+                    t.setValue((t.value - 100))
+                    console.log(t.value/notifs.popupTimeout)
+                }
+            })
+        }),
+        on_primary_click: () => n.dismiss()
     })
-    
     
     const notifImageBig = (n.image) ? Widget.Box({
         css: `background-image: url("${n.image}"); min-width: 125px; min-height: 125px; background-position: center; background-repeat: no-repeat; background-size: cover`,
@@ -338,10 +352,9 @@ export const notificationPopupBody = (n: Notification) => {
                             child: Widget.Icon("emblem-system-symbolic"),
                             on_primary_click: () => Utils.execAsync("kitty -e nvim /home/rudy/.config/ags/tsAgs/Functions/Notifications.ts")
                         }),
-                        closeButton,
+                        n.popup ? closeButton : closeButtonIcon(),
                     ]
                     }),
-                    notifImageShort,
                 ]
             })
         })
