@@ -121,9 +121,12 @@ export const notificationPopupBody = (n: Notification) => {
         })
     })
 
-    const t = Variable(notifs.popupTimeout)
 
-    const closeButton = Widget.EventBox({
+    const closeButton = () => {
+
+        const t = Variable(notifs.popupTimeout)
+
+        return Widget.EventBox({
         hpack: "end",
         vpack: "start",
         hexpand: true,
@@ -139,12 +142,12 @@ export const notificationPopupBody = (n: Notification) => {
                 if (n.popup)
                 {
                     t.setValue((t.value - 100))
-                    console.log(t.value/notifs.popupTimeout)
                 }
             })
         }),
         on_primary_click: () => n.dismiss()
     })
+}
     
     const notifImageBig = (n.image) ? Widget.Box({
         css: `background-image: url("${n.image}"); min-width: 125px; min-height: 125px; background-position: center; background-repeat: no-repeat; background-size: cover`,
@@ -352,7 +355,7 @@ export const notificationPopupBody = (n: Notification) => {
                             child: Widget.Icon("emblem-system-symbolic"),
                             on_primary_click: () => Utils.execAsync("kitty -e nvim /home/rudy/.config/ags/tsAgs/Functions/Notifications.ts")
                         }),
-                        n.popup ? closeButton : closeButtonIcon(),
+                        n.popup ? closeButton() : closeButtonIcon(),
                     ]
                     }),
                 ]

@@ -14,6 +14,7 @@ import closeWin from "./Functions/closeWin"
 // const hyprland = await Service.import("hyprland");
 // import { Workspace } from "types/service/hyprland";
 import Monitor from "./Functions/Monitor"
+const mpris = await Service.import("mpris")
 
 const mediaWin = Widget.Window({
     class_name: "MediaPlay",
@@ -23,9 +24,14 @@ const mediaWin = Widget.Window({
     margins: [10, 170],
     child: Media(),
     keymode: "exclusive",
-    setup: self => self.keybind("Escape", () => {
-        App.closeWindow(self.name || "")
-    }),
+    setup: self => self
+        .keybind("Escape", () => {
+            App.closeWindow(self.name || "")
+        })
+        .hook(mpris, () => {
+            self.visible = true;
+            Utils.timeout(3000, () => { self.visible = false })
+        }),
 })
 
 function MediaGet() {
