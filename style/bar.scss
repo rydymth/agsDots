@@ -1,0 +1,22 @@
+@import "./vars";
+@import "./colors";
+
+.BarCenterBox {
+    @include bar
+}
+
+.RightBar {
+    padding: 5px 11px;
+    margin: 0px 5px 0px 0px;
+    background-color: rgba($theme_unfocused_base_color, 0.0);
+    color: $theme_unfocused_fg_color;
+    border-radius: 7px;
+}
+
+.LeftBar {
+    padding: 5px 11px;
+    margin: 0px 0px 0px 5px;
+    background-color: rgba($theme_unfocused_base_color, 0.0);
+    color: $theme_unfocused_fg_color;
+    border-radius: 7px;
+}

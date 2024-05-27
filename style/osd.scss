@@ -1,0 +1,19 @@
+@import "./vars";
+
+.VolumeOSD, .screenOSD, .kbdOSD {
+    @include osd
+}
+
+.VolOSdVal {
+    padding: 7px;
+    font-weight: bold;
+}
+
+.Volume, .Brightness, .KeyboardBrightness {
+    padding: 7px;
+}
+
+.VolOsdProg {
+    padding: 7px;
+    min-height: 5px;
+}

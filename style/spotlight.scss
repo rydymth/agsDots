@@ -1,0 +1,9 @@
+@import "./vars";
+
+.AppLauncherPart {
+    @include apps;
+}
+
+.AppEntryWidget, .SpotlightEntryBox {
+    min-width: 2em;
+}

@@ -1,0 +1,16 @@
+@import "./colors";
+
+.workspacesBox {
+    background-color: transparent;
+    color: $insensitive_fg_color;
+    padding: 0px 10px;
+    
+    .Active {
+        color: $success_bg_color;
+    }
+    
+    .RevealerContainer {
+        background-color: transparent;
+        padding: 0px 5px;
+    }
+}

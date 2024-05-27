@@ -1,0 +1,51 @@
+@import "./colors";
+
+.player {
+    padding: 10px;
+    min-width: 350px;
+
+    .img {
+        min-width: 100px;
+        min-height: 100px;
+        background-size: cover;
+        background-position: center;
+        border-radius: 13px;
+        margin-right: 1em;
+    }
+
+    .title {
+        font-size: 1.2em;
+    }
+
+    .artist {
+        font-size: 1.1em;
+        color: $insensitive_fg_color;
+    }
+
+    scale.position {
+        padding: 0;
+        margin-bottom: .3em;
+
+        trough {
+            min-height: 8px;
+        }
+
+        highlight {
+            background-color: $theme_fg_color;
+        }
+
+        slider {
+            all: unset;
+        }
+    }
+
+    button {
+        min-height: 1em;
+        min-width: 1em;
+        padding: .3em;
+
+        &.play-pause {
+            margin: 0 .3em;
+        }
+    }
+}

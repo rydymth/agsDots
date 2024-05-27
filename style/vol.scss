@@ -1,0 +1,24 @@
+@import "./vars";
+
+.speakerStreamBox, .microphoneStreamBox {
+    @include volStreamBox
+}
+
+.speakerStreamHeader, .microphoneStreamHeader {
+    font-weight: bold;
+}
+
+.speakerSingleStreamBox, .microphoneSingleStreamBox {
+    @include indivisualStream;
+    &:hover {
+        background-color: $hover-color;
+    }
+}
+
+.audioWinBox {
+    @include audio;
+}
+
+.speakerSlider, .microphoneSlider {
+    @include sliders;
+}

@@ -1,0 +1,91 @@
+@import "./colors.scss";
+
+$background-color: rgba($theme_bg_color, 0.5);
+$foreground-color: $theme_fg_color;
+$hover-color: rgba($theme_base_color,0.9);
+$border-radius: 7px;
+$padding: 10px;
+$margin: 10px;
+$notifSmallFont: 9px;
+$notifFont: 14px;
+
+@mixin notifcolor($size) {
+    font-size: $size;    
+    background-color: $background-color;
+    color: $foreground-color;
+    border-radius: $border-radius;
+    padding: $padding;
+    margin: $margin;
+}
+
+@mixin networkColorBox() {
+    background-color: $background-color;
+    color: $foreground-color;
+    border-radius: $border-radius;
+    padding: $padding;
+    margin: $margin;
+}
+
+@mixin nwElements {
+    color: $foreground-color;
+    font-weight: bold;
+    border-radius: $border-radius;
+    padding: 5px;
+    margin: 5px;
+    font-size: 14px;
+}
+
+@mixin imagePadding($size) {
+    padding: $size;
+    margin: $size;
+}
+
+@mixin volStreamBox {
+    color: $foreground-color;
+    padding: $padding;
+    margin: $margin;
+}
+
+@mixin indivisualStream {
+    color: $foreground-color;
+    padding: $padding;
+    margin: $margin;
+}
+
+@mixin audio {
+    background-color: $background-color;
+    color: $foreground-color;
+    border-radius: $border-radius;
+    padding: $padding;
+    margin: $margin;
+}
+
+@mixin sliders {
+    border-radius: 15px;
+    background-color: $insensitive_bg_color;
+    color: $insensitive_fg_color;
+    min-height: 5px;
+    padding: 5px;
+}
+
+@mixin bar {
+    background-color: rgba($theme_bg_color, 0.3);
+    color: $foreground-color;
+    font-size: 14px;
+}
+
+@mixin osd {
+    background-color: $background-color;
+    color: $foreground-color;
+    border-radius: $border-radius;
+    padding: $padding;
+    margin: $margin;
+}
+
+@mixin apps {
+    background-color: $background-color;
+    color: $foreground-color;
+    border-radius: $border-radius;
+    padding: $padding;
+    margin: $margin;
+}

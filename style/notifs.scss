@@ -1,0 +1,53 @@
+@import "./vars";
+
+.notifActionBox {
+    .notifActions {
+        @include notifcolor(11px);
+        &:hover {
+            @extend .notifActionBox;
+            background-color: $hover-color;
+            color: invert($color: $theme_fg_color);
+        }
+    }
+}
+
+.notifDate {
+    font-size: 0.75em;
+}
+
+.notifPopup {
+    background-color: rgba($background-color, 0.5);
+    padding: $padding;
+    margin: $margin;
+    border-radius: 7px;
+    &:hover {
+        @extend .notifPopup;
+        background-color: $hover-color;
+    }
+    .notifPopupCenterBox {
+        @extend .notifPopup
+    }
+}
+
+
+.notifGrpNotifs {
+    @extend .notifPopup;
+}
+
+.notifGrpName {
+    @include notifcolor(14px);
+}
+
+.NotifCenterContainer {
+    @include notifcolor(14px);
+    min-width: 450px;
+    min-height: 450px;
+}
+
+.notifImage, .notifPopupIcon {
+    @include imagePadding(5px);
+}
+
+.notifImageBigBottom {
+    @include imagePadding(10px);
+}

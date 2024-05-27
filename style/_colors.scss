@@ -1,0 +1,122 @@
+// Color definitions as SCSS variables
+$theme_fg_color: #f2f4f8; // base05
+$theme_text_color: #f2f4f8; // base05
+$theme_bg_color: #161616; // base00
+$theme_base_color: #161616; // base00
+$theme_selected_bg_color: #3ddbd9; // base08
+$theme_selected_fg_color: rgba(0, 0, 0, 0.87); // unchanged
+$insensitive_bg_color: #161616; // base00
+$insensitive_fg_color: rgba(242, 244, 248, 0.5); // base05 with 50% opacity
+$insensitive_base_color: #262626; // base01
+$theme_unfocused_fg_color: #f2f4f8; // base05
+$theme_unfocused_text_color: #f2f4f8; // base05
+$theme_unfocused_bg_color: #161616; // base00
+$theme_unfocused_base_color: #161616; // base00
+$theme_unfocused_selected_bg_color: #3ddbd9; // base08
+$theme_unfocused_selected_fg_color: rgba(0, 0, 0, 0.87); // unchanged
+$unfocused_insensitive_color: rgba(242, 244, 248, 0.5); // base05 with 50% opacity
+$borders: rgba(242, 244, 248, 0.12); // base05 with 12% opacity
+$unfocused_borders: rgba(242, 244, 248, 0.12); // base05 with 12% opacity
+$warning_color: #ff7eb6; // base0C
+$error_color: #ee5396; // base0A
+$success_color: #42be65; // base0D
+$wm_title: #f2f4f8; // base05
+$wm_unfocused_title: rgba(242, 244, 248, 0.7); // base05 with 70% opacity
+$wm_highlight: rgba(242, 244, 248, 0.1); // base05 with 10% opacity
+$wm_bg: #161616; // base00
+$wm_unfocused_bg: #161616; // base00
+$wm_button_close_icon: #161616; // base00
+$wm_button_close_hover_bg: #3ddbd9; // base08
+$wm_button_close_active_bg: #78a9ff; // base09
+$content_view_bg: #161616; // base00
+$placeholder_text_color: #525252; // base03
+$text_view_bg: #262626; // base01
+$budgie_tasklist_indicator_color: #f2f4f8; // base05
+$budgie_tasklist_indicator_color_active: #f2f4f8; // base05
+$budgie_tasklist_indicator_color_active_window: #393939; // base02
+$budgie_tasklist_indicator_color_attention: #ff7eb6; // base0C
+$STRAWBERRY_100: #ff7eb6; // base0C
+$STRAWBERRY_300: #ff7eb6; // base0C
+$STRAWBERRY_500: #ee5396; // base0A
+$STRAWBERRY_700: #ee5396; // base0A
+$STRAWBERRY_900: #ee5396; // base0A
+$ORANGE_100: #78a9ff; // base09
+$ORANGE_300: #78a9ff; // base09
+$ORANGE_500: #33b1ff; // base0B
+$ORANGE_700: #33b1ff; // base0B
+$ORANGE_900: #33b1ff; // base0B
+$BANANA_100: #3ddbd9; // base08
+$BANANA_300: #3ddbd9; // base08
+$BANANA_500: #08bdba; // base07
+$BANANA_700: #08bdba; // base07
+$BANANA_900: #08bdba; // base07
+$LIME_100: #42be65; // base0D
+$LIME_300: #42be65; // base0D
+$LIME_500: #42be65; // base0D
+$LIME_700: #42be65; // base0D
+$LIME_900: #42be65; // base0D
+$BLUEBERRY_100: #be95ff; // base0E
+$BLUEBERRY_300: #be95ff; // base0E
+$BLUEBERRY_500: #be95ff; // base0E
+$BLUEBERRY_700: #be95ff; // base0E
+$BLUEBERRY_900: #be95ff; // base0E
+$GRAPE_100: #be95ff; // base0E
+$GRAPE_300: #be95ff; // base0E
+$GRAPE_500: #be95ff; // base0E
+$GRAPE_700: #be95ff; // base0E
+$GRAPE_900: #be95ff; // base0E
+$COCOA_100: #393939; // base02
+$COCOA_300: #393939; // base02
+$COCOA_500: #262626; // base01
+$COCOA_700: #262626; // base01
+$COCOA_900: #262626; // base01
+$SILVER_100: #dde1e6; // base04
+$SILVER_300: #dde1e6; // base04
+$SILVER_500: #f2f4f8; // base05
+$SILVER_700: #f2f4f8; // base05
+$SILVER_900: #f2f4f8; // base05
+$SLATE_100: #525252; // base03
+$SLATE_300: #525252; // base03
+$SLATE_500: #525252; // base03
+$SLATE_700: #525252; // base03
+$SLATE_900: #525252; // base03
+$BLACK_100: #161616; // base00
+$BLACK_300: #161616; // base00
+$BLACK_500: #161616; // base00
+$BLACK_700: #161616; // base00
+$BLACK_900: #161616; // base00
+$accent_bg_color: #3ddbd9; // base08
+$accent_fg_color: rgba(0, 0, 0, 0.87); // unchanged
+$accent_color: #3ddbd9; // base08
+$destructive_bg_color: #ee5396; // base0A
+$destructive_fg_color: rgba(0, 0, 0, 0.87); // unchanged
+$destructive_color: #ee5396; // base0A
+$success_bg_color: #42be65; // base0D
+$success_fg_color: rgba(0, 0, 0, 0.87); // unchanged
+$success_color: #42be65; // base0D
+$warning_bg_color: #ff7eb6; // base0C
+$warning_fg_color: rgba(0, 0, 0, 0.87); // unchanged
+$warning_color: #ff7eb6; // base0C
+$error_bg_color: #ee5396; // base0A
+$error_fg_color: rgba(0, 0, 0, 0.87); // unchanged
+$error_color: #ee5396; // base0A
+$window_bg_color: #161616; // base00
+$window_fg_color: #f2f4f8; // base05
+$view_bg_color: #161616; // base00
+$view_fg_color: #f2f4f8; // base05
+$headerbar_bg_color: #161616; // base00
+$headerbar_fg_color: #f2f4f8; // base05
+$headerbar_border_color: rgba(242, 244, 248, 0.12); // base05 with 12% opacity
+$headerbar_backdrop_color: $window_bg_color; // same as window_bg_color
+$headerbar_shade_color: rgba(0, 0, 0, 0.36); // unchanged
+$card_bg_color: #161616; // base00
+$card_fg_color: #f2f4f8; // base05
+$card_shade_color: rgba(0, 0, 0, 0.36); // unchanged
+$dialog_bg_color: #161616; // base00
+$dialog_fg_color: #f2f4f8; // base05
+$popover_bg_color: #161616; // base00
+$popover_fg_color: #f2f4f8; // base05
+$thumbnail_bg_color: #161616; // base00
+$thumbnail_fg_color: #f2f4f8; // base05
+$shade_color: rgba(0, 0, 0, 0.36); // unchanged
+$scrollbar_outline_color: rgba(0, 0, 0, 0.5); // unchanged
