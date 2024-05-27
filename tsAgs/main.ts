@@ -1,4 +1,4 @@
-import { Batt } from "./Modules/Battery.ts"
+import { Batt, powerProfile } from "./Modules/Battery.ts"
 import { ClockWidget, clockWin } from "./Modules/Clock.ts"
 import Spotlight from "./Modules/Spotlight.ts"
 import Wifi, { wifiWindow } from "./Modules/Wifi.ts"
@@ -11,8 +11,8 @@ import { NCWindow, noitfCenter } from "./Modules/NotificationCenter"
 import SysTray from "./Modules/Systray"
 import { Media } from "./Modules/Media"
 import closeWin from "./Functions/closeWin"
-const hyprland = await Service.import("hyprland");
-import { Workspace } from "types/service/hyprland";
+// const hyprland = await Service.import("hyprland");
+// import { Workspace } from "types/service/hyprland";
 import Monitor from "./Functions/Monitor"
 
 const mediaWin = Widget.Window({
@@ -153,7 +153,8 @@ try {
             NotificationPopups(0),
             NCWindow,
             mediaWin,
-            clockWin
+            clockWin,
+            powerProfile()
         ],
         style: "/home/rudy/.cache/agsStyle.css"
     })

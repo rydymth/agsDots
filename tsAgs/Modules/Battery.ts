@@ -1,5 +1,6 @@
 const battery = await Service.import('battery')
 import Tooltips from "tsAgs/Functions/Tooltips"
+import closeWin from "tsAgs/Functions/closeWin"
 const pp = await Service.import("powerprofiles")
 
 globalThis.notifies = false
@@ -34,6 +35,80 @@ batteryTooltip.child.child.hook(battery, () => {
 
 batteryTooltip.margins = [10, 60]
 
+export const powerProfile = () => {
+
+    const current = Widget.Label({
+        class_name: "CurrentPP",
+        setup: self => self.hook(pp, () => {
+            self.label = pp.active_profile
+        })
+    })    
+
+    const profileInfoDegraded = Widget.Label({
+        class_name: "CurrentProfileInfo",
+        css: 'color: gray',
+        hexpand: true,
+        justification: "left",
+        label: pp.performance_degraded || "No Degrading info Available"
+    })
+
+    const profileInfoInhibited = Widget.Label({
+        class_name: "CurrentProfileInfo",
+        css: 'color: gray',
+        hexpand: true,
+        justification: "left",
+        label: pp.performance_inhibited || "No Inhibition info Available"
+    })
+
+    const profileContainers = Widget.Box({
+        class_name: "ppEachContainer",
+        vertical: true,
+        spacing: 5,
+        setup: self => self.hook(pp, () => {
+            self.children = pp.profiles.map(p => Widget.EventBox({
+                class_name: "IndivisualProfileBox",
+                child: Widget.Box({
+                    hexpand: true,
+                    children: [
+                        Widget.Label({
+                            hexpand: true,
+                            hpack: "center",
+                            label: Object.values(p)[0]
+                        })
+                    ]
+                }),
+                on_primary_click: () => pp.active_profile = Object.values(p)[0]
+            }))
+        })
+    })
+
+    const AllTogether = Widget.Box({
+        class_name: "powerProfileBox",
+        spacing: 5,
+        vertical: true,
+        children: [
+            current,
+            profileInfoDegraded,
+            profileInfoInhibited,
+            Widget.Separator(),
+            profileContainers
+        ]
+    })
+
+    return Widget.Window({
+        visible: false,
+        class_name: "PPWindow",
+        name: "PP",
+        anchor: ["top", "right"],
+        margins: [10, 10],
+        child:AllTogether,
+        keymode: "exclusive",
+        setup: self => self.keybind("Escape", () => {
+            App.closeWindow(self.name || "")
+        }) 
+    })
+}
+
 export const Batt = () => {
 
     const battContents = Widget.Box({
@@ -55,10 +130,10 @@ export const Batt = () => {
         class_name: "BatteryMainEventBox",
         child: battContents,
         on_hover: () => batteryTooltip.visible = true,
-        setup: self => self.on("leave-notify-event", () => batteryTooltip.visible = false)
+        setup: self => self.on("leave-notify-event", () => batteryTooltip.visible = false),
+        on_primary_click: () => {
+            closeWin("PP")
+            App.toggleWindow("PP")
+        }
     })
-}
-
-export const powerProfile = {
-    
 }
