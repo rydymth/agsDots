@@ -17,47 +17,78 @@ function getATagContents(htmlString: string) {
 
 export const notificationPopupBody = (n: Notification) => {
 
-    const notifAppIcon = () => {
+    const notifAppNameIcon = () => {
 
-        if (n.app_icon.length > 0)
-        {
-            const img = Utils.lookUpIcon(n.app_icon)
-            if (img === null)
+        const notifAppIcon = () => {
+
+            if (n.app_icon.length > 0)
             {
-                return Widget.Box({
-                    class_name: "notifPopupIcon",
-                    vpack: "center",
-                    hpack: "start",
-                    hexpand: true,
-                    vexpand: true,
-                    css: `background-image: url("${n.app_icon}"); min-width: 15px; min-height: 15px; background-position: center; background-repeat: no-repeat; background-size: cover`,
-                })
+                const img = Utils.lookUpIcon(n.app_icon)
+                if (img === null)
+                {
+                    return Widget.Box({
+                        class_name: "notifPopupIcon",
+                        vpack: "start",
+                        hpack: "start",
+                        hexpand: true,
+                        vexpand: true,
+                        css: `background-image: url("${n.app_icon}"); min-width: 15px; min-height: 15px; background-position: center; background-repeat: no-repeat; background-size: cover`,
+                    })
+                }
+                else
+                {
+                    return Widget.Box([Widget.Icon({
+                        class_name: "notifPopupIcon",
+                        vpack: "start",
+                        hpack: "start",
+                        hexpand: true,
+                        vexpand: true,
+                        size: 15,
+                        icon: n.app_icon,
+                    })])
+                }
             }
             else
             {
                 return Widget.Box([Widget.Icon({
                     class_name: "notifPopupIcon",
-                    vpack: "center",
+                    vpack: "start",
                     hpack: "start",
                     hexpand: true,
                     vexpand: true,
-                    size: 15,
-                    icon: n.app_icon,
+                    icon: "dialog-information",
                 })])
             }
         }
-        else
-        {
-            return Widget.Box([Widget.Icon({
-                class_name: "notifPopupIcon",
-                vpack: "center",
-                hpack: "start",
-                hexpand: true,
-                vexpand: true,
-                icon: "dialog-information",
-            })])
+
+        const names = {
+            "com.github.Aylur.ags.rudy": "System",
+            "notify-send": "System",
         }
+
+        function getName(app: string) {
+            return names.hasOwnProperty(app) ? names[app] : app
+        }
+
+        const notifAppName = Widget.Label({
+            class_name: "notifAppName",
+            hexpand: true,
+            vpack: "start",
+            hpack: "end",
+            label: `${getName(n.app_name)}`
+        })
+
+        return Widget.Box({
+            class_name: "notifAppNameIcon",
+            spacing: 7,
+            children: [
+                notifAppIcon(),
+                notifAppName 
+            ]
+        })
+
     }
+
  
     const notifSummary = Widget.Label({
         class_name: "notifSummary",
@@ -96,18 +127,22 @@ export const notificationPopupBody = (n: Notification) => {
         ],
         })
     
-    const notifActions = Widget.Box({
-        visible: (n.actions.length > 0),
-        class_name: "notifActionBox",
-        spacing: 7,
-        vpack: "end",
-        hpack: "center",
-        children: n.actions.map(a => Widget.EventBox({
-            class_name: "notifActions",
-            child: Widget.Label(a.label),
-            on_primary_click: () => n.invoke(a.id)
-        }))
-    })
+    const notifActions = () => Widget.Box({
+            visible: (n.actions.length > 0),
+            class_name: "notifActionBox",
+            spacing: 7,
+            vpack: "end",
+            hexpand: true,
+            vexpand: true,
+            children: n.actions.map(a => Widget.EventBox({
+                hexpand: true,
+                vexpand: true,
+                class_name: "notifActions",
+                child: Widget.Label(a.label),
+                on_primary_click: () => n.invoke(a.id)
+                })
+            )
+        })
 
     const closeButtonIcon = () => Widget.Box({
         class_name: "CloseNotif",
@@ -148,18 +183,7 @@ export const notificationPopupBody = (n: Notification) => {
         on_primary_click: () => n.dismiss()
     })
 }
-    
-    const notifImageBig = (n.image) ? Widget.Box({
-        css: `background-image: url("${n.image}"); min-width: 125px; min-height: 125px; background-position: center; background-repeat: no-repeat; background-size: cover`,
-        class_name: "notifImageBigBottom",
-        hpack: "center",
-        vpack: "center",
-        hexpand: true,
-        vexpand: true
-    })
-    :
-    Widget.Box()
-    
+
     const bigRevealer = Widget.Revealer({
         class_name: "notifBottomImgActionReveal",
         reveal_child: false,
@@ -167,65 +191,41 @@ export const notificationPopupBody = (n: Notification) => {
             vertical: true,
             hexpand: true,
             vexpand: true,
-            children: (n.actions.length > 0) ? [notifImageBig, notifActions] : [notifImageBig]
+            children: (n.actions.length > 0) ? [Widget.EventBox({
+                class_name: "notifActionsEB",
+                child: notifActions(),
+                on_hover: () => bigRevealer.reveal_child = true,
+                setup: self => self.on("leave-notify-event", () => bigRevealer.reveal_child = false)
+            })] : []
         })
     })
 
-    const arrowRevealer = Widget.EventBox({
-        class_name: "notifBodyActionRevealerButton",
-        child: Widget.Icon({
-            class_name: "notifBodyDispRevealerIcon",
-            icon: "pan-down-symbolic"
-        }),
-        on_primary_click: (self) => {
-            if (!notifBodyFull.reveal_child)
-            {
-                notifBodyFull.reveal_child = true;
-                bigRevealer.reveal_child = true;
-                self.child.icon = "pan-up-symbolic"
-            }
-            else
-            {
-                notifBodyFull.reveal_child = false
-                bigRevealer.reveal_child = false
-                self.child.icon = "pan-down-symbolic"
-            }
-        }
-    })
-    
     const getDate = () => {
+        const current = new Date();
 
-        const current = new Date()
+        const formatTime = (time, format) => GLib.DateTime.new_from_unix_local(time).format(format);
 
-        const timeDisp = (time: number = n.time, format = "%H:%M - %e %m %Y") => GLib.DateTime
-        .new_from_unix_local(time)
-        .format(format)
+        const getTimeDisplay = (time = n.time, format = "%H:%M - %e %m %Y") => formatTime(time, format);
+        const getTimeDisplayShort = (time = n.time, format = "%H:%M") => formatTime(time, format);
+        const getMinutes = (time = n.time, format = "%M") => formatTime(time, format);
+        const getHours = (time = n.time, format = "%H") => formatTime(time, format);
+        const getDateCheck = (time = n.time, format = "%e") => formatTime(time, format);
+        const getMonthCheck = (time = n.time, format = "%m") => formatTime(time, format);
+        const getYearCheck = (time = n.time, format = "%Y") => formatTime(time, format);
 
-        const timeDispShort = (time: number = n.time, format = "%H:%M") => GLib.DateTime
-        .new_from_unix_local(time)
-        .format(format)
-        
-        const mins = (time: number = n.time, format = "%M") => GLib.DateTime
-        .new_from_unix_local(time)
-        .format(format)
+        const currentMonth = current.getMonth() + 1;
+        const currentYear = current.getFullYear();
+        const currentDate = current.getDate();
+        const currentHours = current.getHours();
+        const currentMinutes = current.getMinutes();
 
-        const hours = (time: number = n.time, format = "%H") => GLib.DateTime
-        .new_from_unix_local(time)
-        .format(format)
+        const notificationDate = Number(getDateCheck());
+        const notificationMonth = Number(getMonthCheck());
+        const notificationYear = Number(getYearCheck());
+        const notificationHours = Number(getHours());
+        const notificationMinutes = Number(getMinutes());
 
-        const dateCheck = (time: number = n.time, format = "%e") => GLib.DateTime
-        .new_from_unix_local(time)
-        .format(format)
-
-        const monthCheck = (time: number = n.time, format = "%m") => GLib.DateTime
-        .new_from_unix_local(time)
-        .format(format)
-
-        const yearCheck = (time: number = n.time, format = "%Y") => GLib.DateTime
-        .new_from_unix_local(time)
-        .format(format)
-        
-        if ((Number(monthCheck()) - 1 < current.getMonth()) || (Number(yearCheck()) < current.getFullYear()))
+        if ((notificationMonth < currentMonth && notificationYear === currentYear) || (notificationYear < currentYear)) {
             return Widget.Label({
                 class_name: "notifDate",
                 hpack: "end",
@@ -233,11 +233,10 @@ export const notificationPopupBody = (n: Notification) => {
                 hexpand: true,
                 vexpand: false,
                 justification: "right",
-                label: timeDisp()
-            })
-        else
-        {
-            if (Number(dateCheck()) < current.getDate() - 1)
+                label: getTimeDisplay()
+            });
+        } else {
+            if (notificationDate < currentDate - 1) {
                 return Widget.Label({
                     class_name: "notifDate",
                     hpack: "end",
@@ -245,36 +244,110 @@ export const notificationPopupBody = (n: Notification) => {
                     hexpand: true,
                     vexpand: false,
                     justification: "right",
-                    label: `${timeDispShort} ${current.getDate() - Number(dateCheck())} day(s) ago`
-                })
-                
-                else
-                {
-                    let time
-                    if ((Number(hours()) === current.getHours()) && (Number(mins()) === current.getMinutes()))
-                        time = `Now`
-                    else if ((Number(hours()) === current.getHours()) && !(Number(mins()) === current.getMinutes()))
-                        time = `${current.getMinutes() - Number(mins())}mins ago`
-                    else
-                        time = `${current.getHours() - Number(hours())}Hrs and ${current.getMinutes() - Number(mins())}Mins ago`
-
-                    return Widget.Label({
-                        class_name: "notifDate",
-                        hpack: "end",
-                        vpack: "start",
-                        hexpand: true,
-                        vexpand: false,
-                        justification: "right",
-                        label: time
-                    })
+                    label: `${getTimeDisplayShort()} ${currentDate - notificationDate} day(s) ago`
+                });
+            } else {
+                let time;
+                if (notificationHours === currentHours && notificationMinutes === currentMinutes) {
+                    time = `Now`;
+                } else if (notificationHours === currentHours && notificationMinutes !== currentMinutes) {
+                    time = `${currentMinutes - notificationMinutes} mins ago`;
+                } else {
+                    const hourDiff = currentHours - notificationHours;
+                    const minuteDiff = currentMinutes - notificationMinutes;
+                    time = `${hourDiff} Hrs and ${minuteDiff} Mins ago`;
                 }
+
+                return Widget.Label({
+                    class_name: "notifDate",
+                    hpack: "end",
+                    vpack: "start",
+                    hexpand: true,
+                    vexpand: false,
+                    justification: "right",
+                    label: time
+                });
+            }
         }
-    }
-    
+};
+
+
+    const centerBox = () => Widget.CenterBox({
+        class_name: "notifPopupCenterBox",
+        spacing: 10,
+        start_widget: Widget.Box({
+            class_name: "notif11",
+            hexpand: true,
+            vexpand: false,
+            spacing: 10,
+            children: [
+                Widget.Box({
+                    hexpand: true,
+                    vexpand: true,
+                    hpack: "start",
+                    vpack: "start",
+                    children: [notifAppNameIcon()]
+                }),
+            ]
+        }),
+
+        center_widget: Widget.Box({
+            vertical: true,
+            hexpand: true,
+            vexpand: true,
+            spacing: 5,
+            children: [
+                Widget.Box({
+                    hpack: "center",
+                    vpack: "start",    
+                    child: notifSummary,
+                }),
+                Widget.Box({
+                    hpack: "center",
+                    vpack: "center",
+                    vertical: true,
+                    spacing: 10,
+                    children: [
+                        notifBodyDisp,
+                    ]
+                }),
+            ]
+        }),
+
+        end_widget: Widget.Box({
+            hexpand: true,
+            vexpand: true,
+            vertical: true,
+            hpack: 'end',
+            spacing: 15,
+            children: [
+                Widget.Box({
+                    spacing: 3,
+                    children: [
+                        Widget.EventBox({
+                            class_name: "notifSettings",
+                            child: Widget.Icon("emblem-system-symbolic"),
+                            on_primary_click: () => Utils.execAsync("kitty -e helix /home/rudy/.config/ags/tsAgs/Functions/Notifications.ts")
+                    }),
+                    n.popup ? closeButton() : closeButtonIcon(),
+                ]
+                }),
+                Widget.Box({
+                    hexpand: true,
+                    vexpand: true,
+                    vpack: "end",
+                    hpack: "end",
+                    child: getDate()
+                }),
+            ]
+        })
+        })
+
     return Widget.EventBox({
         class_name: "notifPopup",
         hexpand: true,
         vexpand: true,
+        on_hover: () => bigRevealer.reveal_child = true,
         setup: self => self.hook(n, () => {
             self.toggleClassName("notifCritical", n.urgency === "critical")
             if (n.urgency === "critical")
@@ -282,96 +355,33 @@ export const notificationPopupBody = (n: Notification) => {
                 notifs.forceTimeout = true
                 notifs.popupTimeout = 7000
             }
-        }),
-        child: Widget.CenterBox({
-            class_name: "notifPopupCenterBox",
-            spacing: 10,
-            start_widget: Widget.Box({
-                class_name: "notif11",
-                hexpand: true,
-                vexpand: false,
-                spacing: 10,
-                children: [
-                    Widget.Box({
-                        hexpand: true,
-                        vexpand: true,
-                        hpack: "start",
-                        vpack: "start",
-                        children: [notifAppIcon()]
-                    }),
-                    Widget.Box({
-                        hexpand: true,
-                        vpack: "start",
-                        hpack: "end",
-                        child: getDate()
-                    }),
-                    Widget.Box({
-                        hexpand: true,
-                        vpack: "start",
-                        hpack: "center",
-                        child: arrowRevealer
-                    }),
-                ]
-            }),
-            center_widget: Widget.Box({
-                vertical: true,
-                hexpand: true,
-                vexpand: true,
-                spacing: 5,
-                children: [
-                    Widget.Box({
-                        hpack: "center",
-                        vpack: "start",    
-                        child: notifSummary,
-                    }),
-                    Widget.Box({
-                        hpack: "center",
-                        vpack: "center",
-                        vertical: true,
-                        spacing: 10,
-                        children: [
-                            notifBodyDisp,
-                        ]
-                    }),
-                    Widget.Box({
-                        hpack: "center",
-                        vpack: "end",
-                        hexpand: true,
-                        vexpand: true,
-                        child: bigRevealer
-                    })
-                ]
-            }),
-            end_widget: Widget.Box({
-                hexpand: true,
-                vexpand: true,
-                vertical: true,
-                hpack: 'end',
-                children: [
-                    Widget.Box({
-                        spacing: 3,
-                        children: [Widget.EventBox({
-                            class_name: "notifSettings",
-                            child: Widget.Icon("emblem-system-symbolic"),
-                            on_primary_click: () => Utils.execAsync("kitty -e nvim /home/rudy/.config/ags/tsAgs/Functions/Notifications.ts")
-                        }),
-                        n.popup ? closeButton() : closeButtonIcon(),
-                    ]
-                    }),
-                ]
-            })
+        })
+        .on("leave-notify-event", () => bigRevealer.reveal_child = false),
+        child: Widget.Box({
+            spacing: 7,
+            className: "notifAllContainer",
+            vertical: true,
+            children: [
+                centerBox(),
+                Widget.Box({
+                    hexpand: true,
+                    vexpand: true,
+                    child: bigRevealer
+                })
+
+            ]
         })
     })
 }
 
-export const NotificationPopups = (monitor = 0) => {
+export const NotificationPopups = () => {
     const poppy = notifs.bind("popups");
     const notifWind =  Widget.Window({
         class_name: "NotifWindow",
         visible: poppy.as(p => p.length > 0),
         name: "RNotif",
-        monitor,
-        anchor: ["top"],
+        anchor: ["top", "right"],
+        margins: [30, 60],
         child: Widget.Box({
             class_name: "NotifPopups",
             child: Widget.Box({
