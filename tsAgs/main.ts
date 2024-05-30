@@ -59,8 +59,52 @@ export const Bar = (mon: number) => {
             Widget.Box({
                 class_name: "leftStartBar",
                 hpack: "start",
-                child: barBox()
+                child: barBox(mon)
             })
+        ]
+    })
+
+    const RightBarReveal = Widget.Revealer({
+        class_name: "rightBarReveal",
+        reveal_child: false,
+        transition: "slide_left",
+        child: Widget.Box({
+            class_name: "rightBarRevealBox",
+            spacing: 10,
+            hexpand: true,
+            vpack: "fill",
+            children: [
+                SysTray(),
+                MediaGet(),
+                noitfCenter(),
+                indFn("speaker"),
+                indFn("microphone"),
+                btBarButton(),
+                Wifi(),
+             ]            
+        })
+    })
+
+    const revealerContainerIcon = Widget.EventBox({
+        class_name: "RevealerContainer",
+        child: Widget.Box({
+            spacing: 10,
+            class_name: "rightBarBoxIcon",
+            children: [
+                Widget.Icon({ icon: "pan-start-symbolic"}),
+            ]
+        }),
+        on_primary_click: () => { RightBarReveal.reveal_child = !RightBarReveal.reveal_child }, 
+    })
+
+    const together = Widget.Box({
+        class_name: "RightbarAllContainer",
+        spacing: 10,
+        children: [
+            Widget.EventBox({
+                child: RightBarReveal,
+            }),
+            revealerContainerIcon,
         ]
     })
 
@@ -74,14 +118,7 @@ export const Bar = (mon: number) => {
                 className: "RightStartBar",
                 hpack: "end",
                 spacing: 7,
-                children: [
-                    SysTray(),
-                    MediaGet(),
-                    noitfCenter(),
-                    indFn("speaker"),
-                    indFn("microphone"),
-                    btBarButton(),
-                 ]
+                child: together
             }),
 
             Widget.Box({
@@ -95,7 +132,6 @@ export const Bar = (mon: number) => {
                 hpack: "end",
                 spacing: 7,
                 children: [ 
-                    Wifi(),
                     ClockWidget()
                  ]
             })
@@ -115,7 +151,7 @@ export const Bar = (mon: number) => {
     })
 
     return Widget.Window({
-        visible: true,
+        visible: false,
         monitor: mon,
         class_name: `bar-${mon}`,
         name: `bar-${mon}`,
@@ -123,27 +159,8 @@ export const Bar = (mon: number) => {
         exclusivity: "exclusive",
         anchor: ["left", "top", "right"],
         child: BarContents,
-        // setup: self => self
-        //             .hook(hyprland, () => {
-        //                 try
-        //                 {
-        //                     //@ts-ignore
-        //                     // const wsp: Workspace = hyprland.getWorkspace(hyprland.active.workspace.id)
-        //                     // if (!globalThis.changed)
-        //                     //     if (wsp.windows > 0)
-        //                     //         self.visible = false
-        //                     //     else
-        //                     //         self.visible = true
-        //                 }
-        //                 catch(error)
-        //                 {
-        //                     console.log("The Workspace prolly aint defined or aint persistent")
-        //                 }
-        //             })
         })
 }
-
-globalThis.BARR = Bar    
 
 try {
 
@@ -160,7 +177,7 @@ try {
             NCWindow,
             mediaWin,
             clockWin,
-            powerProfile()
+            powerProfile(),
         ],
         style: "/home/rudy/.cache/agsStyle.css"
     })

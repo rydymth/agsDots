@@ -44,10 +44,16 @@ $notifFont: 14px;
     color: $foreground-color;
     padding: $padding;
     margin: $margin;
+    border-radius: $border-radius;
+    padding: $padding;
+    margin: $margin;
 }
 
 @mixin indivisualStream {
     color: $foreground-color;
+    padding: $padding;
+    margin: $margin;
+    border-radius: $border-radius;
     padding: $padding;
     margin: $margin;
 }

@@ -1,122 +1,146 @@
-// Color definitions as SCSS variables
-$theme_fg_color: #f2f4f8; // base05
-$theme_text_color: #f2f4f8; // base05
-$theme_bg_color: #161616; // base00
-$theme_base_color: #161616; // base00
-$theme_selected_bg_color: #3ddbd9; // base08
-$theme_selected_fg_color: rgba(0, 0, 0, 0.87); // unchanged
-$insensitive_bg_color: #161616; // base00
-$insensitive_fg_color: rgba(242, 244, 248, 0.5); // base05 with 50% opacity
-$insensitive_base_color: #262626; // base01
-$theme_unfocused_fg_color: #f2f4f8; // base05
-$theme_unfocused_text_color: #f2f4f8; // base05
-$theme_unfocused_bg_color: #161616; // base00
-$theme_unfocused_base_color: #161616; // base00
-$theme_unfocused_selected_bg_color: #3ddbd9; // base08
-$theme_unfocused_selected_fg_color: rgba(0, 0, 0, 0.87); // unchanged
-$unfocused_insensitive_color: rgba(242, 244, 248, 0.5); // base05 with 50% opacity
-$borders: rgba(242, 244, 248, 0.12); // base05 with 12% opacity
-$unfocused_borders: rgba(242, 244, 248, 0.12); // base05 with 12% opacity
-$warning_color: #ff7eb6; // base0C
-$error_color: #ee5396; // base0A
-$success_color: #42be65; // base0D
-$wm_title: #f2f4f8; // base05
-$wm_unfocused_title: rgba(242, 244, 248, 0.7); // base05 with 70% opacity
-$wm_highlight: rgba(242, 244, 248, 0.1); // base05 with 10% opacity
-$wm_bg: #161616; // base00
-$wm_unfocused_bg: #161616; // base00
-$wm_button_close_icon: #161616; // base00
-$wm_button_close_hover_bg: #3ddbd9; // base08
-$wm_button_close_active_bg: #78a9ff; // base09
-$content_view_bg: #161616; // base00
-$placeholder_text_color: #525252; // base03
-$text_view_bg: #262626; // base01
-$budgie_tasklist_indicator_color: #f2f4f8; // base05
-$budgie_tasklist_indicator_color_active: #f2f4f8; // base05
-$budgie_tasklist_indicator_color_active_window: #393939; // base02
-$budgie_tasklist_indicator_color_attention: #ff7eb6; // base0C
-$STRAWBERRY_100: #ff7eb6; // base0C
-$STRAWBERRY_300: #ff7eb6; // base0C
-$STRAWBERRY_500: #ee5396; // base0A
-$STRAWBERRY_700: #ee5396; // base0A
-$STRAWBERRY_900: #ee5396; // base0A
-$ORANGE_100: #78a9ff; // base09
-$ORANGE_300: #78a9ff; // base09
-$ORANGE_500: #33b1ff; // base0B
-$ORANGE_700: #33b1ff; // base0B
-$ORANGE_900: #33b1ff; // base0B
-$BANANA_100: #3ddbd9; // base08
-$BANANA_300: #3ddbd9; // base08
-$BANANA_500: #08bdba; // base07
-$BANANA_700: #08bdba; // base07
-$BANANA_900: #08bdba; // base07
-$LIME_100: #42be65; // base0D
-$LIME_300: #42be65; // base0D
-$LIME_500: #42be65; // base0D
-$LIME_700: #42be65; // base0D
-$LIME_900: #42be65; // base0D
-$BLUEBERRY_100: #be95ff; // base0E
-$BLUEBERRY_300: #be95ff; // base0E
-$BLUEBERRY_500: #be95ff; // base0E
-$BLUEBERRY_700: #be95ff; // base0E
-$BLUEBERRY_900: #be95ff; // base0E
-$GRAPE_100: #be95ff; // base0E
-$GRAPE_300: #be95ff; // base0E
-$GRAPE_500: #be95ff; // base0E
-$GRAPE_700: #be95ff; // base0E
-$GRAPE_900: #be95ff; // base0E
-$COCOA_100: #393939; // base02
-$COCOA_300: #393939; // base02
-$COCOA_500: #262626; // base01
-$COCOA_700: #262626; // base01
-$COCOA_900: #262626; // base01
-$SILVER_100: #dde1e6; // base04
-$SILVER_300: #dde1e6; // base04
-$SILVER_500: #f2f4f8; // base05
-$SILVER_700: #f2f4f8; // base05
-$SILVER_900: #f2f4f8; // base05
-$SLATE_100: #525252; // base03
-$SLATE_300: #525252; // base03
-$SLATE_500: #525252; // base03
-$SLATE_700: #525252; // base03
-$SLATE_900: #525252; // base03
-$BLACK_100: #161616; // base00
-$BLACK_300: #161616; // base00
-$BLACK_500: #161616; // base00
-$BLACK_700: #161616; // base00
-$BLACK_900: #161616; // base00
-$accent_bg_color: #3ddbd9; // base08
-$accent_fg_color: rgba(0, 0, 0, 0.87); // unchanged
-$accent_color: #3ddbd9; // base08
-$destructive_bg_color: #ee5396; // base0A
-$destructive_fg_color: rgba(0, 0, 0, 0.87); // unchanged
-$destructive_color: #ee5396; // base0A
-$success_bg_color: #42be65; // base0D
-$success_fg_color: rgba(0, 0, 0, 0.87); // unchanged
-$success_color: #42be65; // base0D
-$warning_bg_color: #ff7eb6; // base0C
-$warning_fg_color: rgba(0, 0, 0, 0.87); // unchanged
-$warning_color: #ff7eb6; // base0C
-$error_bg_color: #ee5396; // base0A
-$error_fg_color: rgba(0, 0, 0, 0.87); // unchanged
-$error_color: #ee5396; // base0A
-$window_bg_color: #161616; // base00
-$window_fg_color: #f2f4f8; // base05
-$view_bg_color: #161616; // base00
-$view_fg_color: #f2f4f8; // base05
-$headerbar_bg_color: #161616; // base00
-$headerbar_fg_color: #f2f4f8; // base05
-$headerbar_border_color: rgba(242, 244, 248, 0.12); // base05 with 12% opacity
-$headerbar_backdrop_color: $window_bg_color; // same as window_bg_color
-$headerbar_shade_color: rgba(0, 0, 0, 0.36); // unchanged
-$card_bg_color: #161616; // base00
-$card_fg_color: #f2f4f8; // base05
-$card_shade_color: rgba(0, 0, 0, 0.36); // unchanged
-$dialog_bg_color: #161616; // base00
-$dialog_fg_color: #f2f4f8; // base05
-$popover_bg_color: #161616; // base00
-$popover_fg_color: #f2f4f8; // base05
-$thumbnail_bg_color: #161616; // base00
-$thumbnail_fg_color: #f2f4f8; // base05
-$shade_color: rgba(0, 0, 0, 0.36); // unchanged
-$scrollbar_outline_color: rgba(0, 0, 0, 0.5); // unchanged
+/* widget text/foreground color */
+$theme-fg-color: #eeffff;
+/* text color for entries, views and content in general */
+$theme-text-color: #eeffff;
+/* widget base background color */
+$theme-bg-color: #292d3e;
+/* text widgets and the like base background color */
+$theme-base-color: #292d3e;
+/* base background color of selections */
+$theme-selected-bg-color: #e2e9e9;
+/* text/foreground color of selections */
+$theme-selected-fg-color: rgba(0, 0, 0, 0.87);
+/* base background color of insensitive widgets */
+$insensitive-bg-color: #292d3e;
+/* text foreground color of insensitive widgets */
+$insensitive-fg-color: rgba(238, 255, 255, 0.5);
+/* insensitive text widgets and the like base background color */
+$insensitive-base-color: #202331;
+/* widget text/foreground color on backdrop windows */
+$theme-unfocused-fg-color: #eeffff;
+/* text color for entries, views and content in general on backdrop windows */
+$theme-unfocused-text-color: #eeffff;
+/* widget base background color on backdrop windows */
+$theme-unfocused-bg-color: #292d3e;
+/* text widgets and the like base background color on backdrop windows */
+$theme-unfocused-base-color: #292d3e;
+/* base background color of selections on backdrop windows */
+$theme-unfocused-selected-bg-color: #e2e9e9;
+/* text/foreground color of selections on backdrop windows */
+$theme-unfocused-selected-fg-color: rgba(0, 0, 0, 0.87);
+/* insensitive color on backdrop windows */
+$unfocused-insensitive-color: rgba(238, 255, 255, 0.5);
+/* widgets main borders color */
+$borders: rgba(238, 255, 255, 0.12);
+/* widgets main borders color on backdrop windows */
+$unfocused-borders: rgba(238, 255, 255, 0.12);
+/* these are pretty self-explanatory */
+$warning-color: #FDD633;
+$error-color: #F28B82;
+$success-color: #81C995;
+/* these colors are exported for the window manager and shouldn't be used in applications,
+read if you used those and something breaks with a version upgrade you're on your own... */
+$wm-title: #eeffff;
+$wm-unfocused-title: rgba(238, 255, 255, 0.7);
+$wm-highlight: rgba(238, 255, 255, 0.1);
+$wm-bg: #292d3e;
+$wm-unfocused-bg: #292d3e;
+$wm-button-close-icon: #292d3e;
+$wm-button-close-hover-bg: #e2e9e9;
+$wm-button-close-active-bg: #c7c7c7;
+/* FIXME this is really an API */
+$content-view-bg: #292d3e;
+$placeholder-text-color: silver;
+/* Very contrasty background for text views ($theme-text-color foreground) */
+$text-view-bg: #1d1d1d;
+$budgie-tasklist-indicator-color: #eeffff;
+$budgie-tasklist-indicator-color-active: #eeffff;
+$budgie-tasklist-indicator-color-active-window: #999999;
+$budgie-tasklist-indicator-color-attention: #FDD633;
+$STRAWBERRY-100: #FF9262;
+$STRAWBERRY-300: #FF793E;
+$STRAWBERRY-500: #F15D22;
+$STRAWBERRY-700: #CF3B00;
+$STRAWBERRY-900: #AC1800;
+$ORANGE-100: #FFDB91;
+$ORANGE-300: #FFCA40;
+$ORANGE-500: #FAA41A;
+$ORANGE-700: #DE8800;
+$ORANGE-900: #C26C00;
+$BANANA-100: #FFFFA8;
+$BANANA-300: #FFFA7D;
+$BANANA-500: #FFCE51;
+$BANANA-700: #D1A023;
+$BANANA-900: #A27100;
+$LIME-100: #A2F3BE;
+$LIME-300: #8ADBA6;
+$LIME-500: #73C48F;
+$LIME-700: #479863;
+$LIME-900: #1C6D38;
+$BLUEBERRY-100: #94A6FF;
+$BLUEBERRY-300: #6A7CE0;
+$BLUEBERRY-500: #3F51B5;
+$BLUEBERRY-700: #213397;
+$BLUEBERRY-900: #031579;
+$GRAPE-100: #D25DE6;
+$GRAPE-300: #B84ACB;
+$GRAPE-500: #9C27B0;
+$GRAPE-700: #830E97;
+$GRAPE-900: #6A007E;
+$COCOA-100: #9F9792;
+$COCOA-300: #7B736E;
+$COCOA-500: #574F4A;
+$COCOA-700: #463E39;
+$COCOA-900: #342C27;
+$SILVER-100: #EEE;
+$SILVER-300: #CCC;
+$SILVER-500: #AAA;
+$SILVER-700: #888;
+$SILVER-900: #666;
+$SLATE-100: #888;
+$SLATE-300: #666;
+$SLATE-500: #444;
+$SLATE-700: #222;
+$SLATE-900: #111;
+$BLACK-100: #474341;
+$BLACK-300: #403C3A;
+$BLACK-500: #393634;
+$BLACK-700: #33302F;
+$BLACK-900: #2B2928;
+
+/* GTK LIBADWAITA NAMED COLORS -- USE RESPONSIBLY! */
+$accent-bg-color: #e2e9e9;
+$accent-fg-color: rgba(0, 0, 0, 0.87);
+$accent-color: #e2e9e9;
+$destructive-bg-color: #F28B82;
+$destructive-fg-color: rgba(0, 0, 0, 0.87);
+$destructive-color: #F28B82;
+$success-bg-color: #81C995;
+$success-fg-color: rgba(0, 0, 0, 0.87);
+$success-color: #81C995;
+$warning-bg-color: #FDD633;
+$warning-fg-color: rgba(0, 0, 0, 0.87);
+$warning-color: #FDD633;
+$error-bg-color: #F28B82;
+$error-fg-color: rgba(0, 0, 0, 0.87);
+$error-color: #F28B82;
+$window-bg-color: #292d3e;
+$window-fg-color: #eeffff;
+$view-bg-color: #292d3e;
+$view-fg-color: #eeffff;
+$headerbar-bg-color: #292d3e;
+$headerbar-fg-color: #eeffff;
+$headerbar-border-color: rgba(238, 255, 255, 0.12);
+$headerbar-backdrop-color: $window-bg-color;
+$headerbar-shade-color: rgba(0, 0, 0, 0.36);
+$card-bg-color: #292d3e;
+$card-fg-color: #eeffff;
+$card-shade-color: rgba(0, 0, 0, 0.36);
+$dialog-bg-color: #292d3e;
+$dialog-fg-color: #eeffff;
+$popover-bg-color: #292d3e;
+$popover-fg-color: #eeffff;
+$thumbnail-bg-color: #292d3e;
+$thumbnail-fg-color: #eeffff;
+$shade-color: rgba(0, 0, 0, 0.36);
+$scrollbar-outline-color: rgba(0, 0, 0, 0.5);

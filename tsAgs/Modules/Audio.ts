@@ -115,15 +115,16 @@ export const audioWin = (type: string = "speaker") => Widget.Window({
     class_name: "audioWindow".concat(`${type}`),
     visible: false,
     anchor: ["top", "right"],
+    margins: [10, 50],
     child: Widget.Box({
         vertical: true,
         hexpand: true,
         class_name: "audioWinBox",
         children: [
-            Widget.Box([
-                audioIcon(type),
-                VolumeSlider(type),
-            ]),
+            Widget.Box({
+                class_name: "audioIcSlide",
+                children: [ audioIcon(type), VolumeSlider(type)] 
+            }),
             Widget.Separator(),
             audioStreams(type)
         ]

@@ -1,9 +1,18 @@
 @import "./vars";
+@import "./colors";
 
 .AppLauncherPart {
     @include apps;
 }
 
 .AppEntryWidget, .SpotlightEntryBox {
-    min-width: 2em;
+    min-width: 500px;
+}
+
+.SpotSolverHelp {
+    color: $insensitive_fg_color;
+}
+
+.SpotSolver {
+    color: #c3e88d;
 }

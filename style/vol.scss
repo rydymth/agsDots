@@ -1,5 +1,14 @@
 @import "./vars";
 
+.audioWindowspeaker, .audioWindowmicrophonr {
+    @include audio;
+    margin: 7px;
+}
+
+.audioWinBox {
+    border-radius: 15px;
+}
+
 .speakerStreamBox, .microphoneStreamBox {
     @include volStreamBox
 }
@@ -15,10 +24,12 @@
     }
 }
 
-.audioWinBox {
-    @include audio;
-}
-
 .speakerSlider, .microphoneSlider {
     @include sliders;
+    margin: 10px;
+}
+
+.audioIcSlide {
+    padding: 7px;
+    margin: 7px;
 }

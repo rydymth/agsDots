@@ -1,10 +1,10 @@
 const hyprland = await Service.import("hyprland");
 const app = await Service.import("applications")
-import { Workspace } from "types/service/hyprland";
+import { Workspace, Monitor } from "types/service/hyprland";
 
 const wsDisptach = (ws: Workspace) => hyprland.messageAsync(`dispatch workspace ${ws.id}`)
 
-export const barBox = () =>{
+export const barBox = (mon: number) =>{
 
     const barBoxContents = (w: Workspace) => {
         const wsNum = Widget.Label({
@@ -76,17 +76,22 @@ export const barBox = () =>{
     return Widget.Box({
         class_name: "workspacesBox",
         spacing: 10,
-        setup: self => self.hook(hyprland, () => self.children = hyprland.monitors.sort((a, b) => a.id - b.id).map(m => Widget.Box({
-            className: "wspSUper",
-            children: [
-                Widget.Label({
-                    class_name: "monName",
-                    label: `${m.name}>>`
-                }),
+        setup: self => self.hook(hyprland, () => {
+            self.children = hyprland.monitors.filter(a => a.id === mon).map(m =>
                 Widget.Box({
-                    children: hyprland.workspaces.filter(w => w.monitorID === m.id).sort((a, b) => a.id - b.id).map(barBoxContents)
-                })
-            ]
-        })))
+                    className: "wspSUper",
+                    children: [
+                        Widget.Label({
+                            class_name: "monName",
+                            label: `${m.name} >> `
+                        }),
+                        Widget.Box({
+                            children: hyprland.workspaces.filter(w => w.monitorID === m.id).sort((a, b) => a.id - b.id).map(barBoxContents)
+                        })
+                    ]
+            })
+        )
+        }
+        )
     })    
 }
