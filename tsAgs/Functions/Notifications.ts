@@ -120,11 +120,9 @@ export const notificationPopupBody = (n: Notification) => {
         })
     })
     
-    const notifBodyDisp = Widget.Box({
+    const notifBodyDisp = Widget.EventBox({
         class_name: "notifBodyBox",
-        children: [
-            notifBodyFull
-        ],
+        child: notifBodyFull,
         })
     
     const notifActions = () => Widget.Box({
@@ -191,14 +189,19 @@ export const notificationPopupBody = (n: Notification) => {
             vertical: true,
             hexpand: true,
             vexpand: true,
-            children: (n.actions.length > 0) ? [Widget.EventBox({
-                class_name: "notifActionsEB",
-                child: notifActions(),
-                on_hover: () => bigRevealer.reveal_child = true,
-                setup: self => self.on("leave-notify-event", () => bigRevealer.reveal_child = false)
-            })] : []
+            children: (n.actions.length > 0) ? [
+                Widget.EventBox({
+                    class_name: "notifActionsEB",
+                    child: notifActions(),
+                    on_hover: () => { bigRevealer.reveal_child = true; notifBodyFull.reveal_child = true },
+                    setup: self => self.on("leave-notify-event", () => { bigRevealer.reveal_child = false; notifBodyFull.reveal_child = false })
+                }),
+            ] : []
         })
     })
+
+    notifBodyDisp.on_hover = () => {bigRevealer.reveal_child = true; notifBodyFull.reveal_child = true}
+    notifBodyDisp.on("leave-notify-event", () => { bigRevealer.reveal_child = true; notifBodyFull.reveal_child = true })
 
     const getDate = () => {
         const current = new Date();
@@ -253,8 +256,8 @@ export const notificationPopupBody = (n: Notification) => {
                 } else if (notificationHours === currentHours && notificationMinutes !== currentMinutes) {
                     time = `${currentMinutes - notificationMinutes} mins ago`;
                 } else {
-                    const hourDiff = currentHours - notificationHours;
-                    const minuteDiff = currentMinutes - notificationMinutes;
+                    const hourDiff = Math.abs(currentHours - notificationHours);
+                    const minuteDiff = Math.abs(currentMinutes - notificationMinutes);
                     time = `${hourDiff} Hrs and ${minuteDiff} Mins ago`;
                 }
 
@@ -347,7 +350,7 @@ export const notificationPopupBody = (n: Notification) => {
         class_name: "notifPopup",
         hexpand: true,
         vexpand: true,
-        on_hover: () => bigRevealer.reveal_child = true,
+        on_hover: () => { bigRevealer.reveal_child = true; notifBodyFull.reveal_child = true },
         setup: self => self.hook(n, () => {
             self.toggleClassName("notifCritical", n.urgency === "critical")
             if (n.urgency === "critical")
@@ -356,7 +359,7 @@ export const notificationPopupBody = (n: Notification) => {
                 notifs.popupTimeout = 7000
             }
         })
-        .on("leave-notify-event", () => bigRevealer.reveal_child = false),
+        .on("leave-notify-event", () => { bigRevealer.reveal_child = false; notifBodyFull.reveal_child = false }),
         child: Widget.Box({
             spacing: 7,
             className: "notifAllContainer",

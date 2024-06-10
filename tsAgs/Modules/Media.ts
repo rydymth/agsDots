@@ -116,30 +116,31 @@ function Player(player) {
     })
 
     return Widget.Box(
-        { class_name: "player" },
-        img,
-        Widget.Box(
-            {
-                vertical: true,
-                hexpand: true,
-            },
-            Widget.Box([
-                title,
-                icon,
+        { class_name: "player", vertical: true, spacing: 10 },
+        Widget.Box({
+            children: [
+                img,
+                Widget.Box(
+                    {
+                        vertical: true,
+                        hexpand: true,
+                    },
+                    title,
+                    artist,
+                )
+            ]
+        }),
+        Widget.Box({ vexpand: true }),
+        positionSlider,
+        Widget.CenterBox({
+            start_widget: positionLabel,
+            center_widget: Widget.Box([
+                prev,
+                playPause,
+                next,
             ]),
-            artist,
-            Widget.Box({ vexpand: true }),
-            positionSlider,
-            Widget.CenterBox({
-                start_widget: positionLabel,
-                center_widget: Widget.Box([
-                    prev,
-                    playPause,
-                    next,
-                ]),
-                end_widget: lengthLabel,
-            }),
-        ),
+            end_widget: lengthLabel,
+        }),
     )
 }
 

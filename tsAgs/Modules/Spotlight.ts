@@ -179,7 +179,7 @@ const AppLauncher = Widget.Box({
                             body: `To ${uri}`, 
                             iconName: `${uri}`})
                         Utils.execAsync(["bash", "/home/rudy/.config/script/wllppr.sh", `${Last}`]).catch((c) => console.log(c))
-                        Utils.execAsync(["hyprpaper"]).catch((c) => console.log(c))
+                        Utils.execAsync(["hyprpaper", "-n"]).catch((c) => console.log(c))
                         }
                 })
             ]

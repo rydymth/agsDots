@@ -1,6 +1,7 @@
 const audio = await Service.import("audio")
 import Tooltips from "tsAgs/Functions/Tooltips"
 import closeWin from "tsAgs/Functions/closeWin"
+import { size } from "tsAgs/main"
 
 const audioIcons =  {
     mic: {
@@ -22,19 +23,6 @@ const audioIcons =  {
     },
     mixer: "mixer-symbolic",
 }
-
-
-const audioTooltip = Tooltips({
-    name: `audiotooltip`,
-    class_name: `tooltip`,
-    anchor: ["top", "right"],
-},
-undefined,
-undefined,
-undefined
-)
-
-audioTooltip.margins = [10, 83]
 
 const VolumeSlider = (type = 'speaker') => Widget.Slider({
     class_name: `${type}Slider`,
@@ -98,6 +86,7 @@ const audioStreams = (type: string = "speaker") => Widget.Box({
 
 const audioIcon = (type: string = "speaker") => Widget.Icon({
     class_name: `${type}IndIcon`,
+    size: size+2,
     setup: self => self.hook(audio, () => {
         let vol = 0
         const { muted, low, medium, high } = (type === "speaker") ?  audioIcons.volume : audioIcons.mic
@@ -135,7 +124,14 @@ export const audioWin = (type: string = "speaker") => Widget.Window({
     }),
 })
 
-
+function getVol(type: string) {
+    let vol = 0
+    if (type === "speaker")
+        vol = audio.speaker.is_muted ? 0 : audio.speaker.volume
+    else
+        vol = audio.microphone.is_muted ? 0 : audio.microphone.volume
+    return vol
+}
 
 /** @param {'speaker' | 'microphone'} type */
 export const indFn = (type: string = "speaker") => {
@@ -146,16 +142,10 @@ export const indFn = (type: string = "speaker") => {
             class_name: `${type}Box`,
             child: audioIcon(type),
         }),
-        on_hover: () => {
-            let vol = 0
-            if (type === "speaker")
-                vol = audio.speaker.is_muted ? 0 : audio.speaker.volume
-            else
-                vol = audio.microphone.is_muted ? 0 : audio.microphone.volume
-            audioTooltip.child.child.label = `${type} Volume = ${Math.ceil(vol * 100)}%`
-            audioTooltip.visible = true
-        },
-        setup: self => self.on("leave-notify-event", () => audioTooltip.visible = false),
+        setup: self => self
+        .hook(audio, () => {
+            self.tooltip_text = `${type} Volume = ${Math.ceil(getVol(type))}`            
+        }),
         on_primary_click: () => {
             closeWin(`${type}Window`)
             App.toggleWindow(`${type}Window`)

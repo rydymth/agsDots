@@ -1,13 +1,14 @@
 const bluetooth = await Service.import("bluetooth");
-import Tooltips from "tsAgs/Functions/Tooltips";
 import { type BluetoothDevice } from "types/service/bluetooth";
 import closeWin from "tsAgs/Functions/closeWin";
+import { size } from "tsAgs/main"; 
 
 const winName = "bluetooth"
 
 const bluetoothToggleButton = Widget.Box({
     class_name: "bluetoothToggleBox",
     hexpand: true,
+    spacing: 10,
     children: [
         Widget.Label({
             hpack: "start",
@@ -69,23 +70,16 @@ const btDeviceList = (device: BluetoothDevice) => Widget.EventBox({
     })
 })
 
-const btTooltip = Tooltips({
-    name: "btTooltip",
-    class_name: "btTooltip",
-    anchor: ["top", "right"], 
-})
-
-btTooltip.margins = [10, 70]
-
-btTooltip.child.child.hook(bluetooth, () => {
-    btTooltip.child.child.label = `${bluetooth.connected_devices.filter( d => d.connected).length} devices connected`
-})
+const getBT = () => {
+    return `${bluetooth.connected_devices.filter( d => d.connected).length} devices connected`
+}
 
 export const btWindow = () => Widget.Window({
     visible: false,
     name: winName,
     class_name: winName.concat("Window"),
     anchor: ["top", "right"],
+    margins: [10, 120],
     child: Widget.Box({
         class_name: winName.concat("Box"),
         vertical: true,
@@ -113,13 +107,13 @@ export const btBarButton = () => Widget.EventBox({
         class_name: "btBarBox",
         child: Widget.Icon({
             class_name: "btBarIcon",
-            icon: bluetooth.bind("enabled").as(b => b) ? "bluetooth-active-symbolic" : "bluetooth-disabled-symbolic"
+            icon: bluetooth.bind("enabled").as(b => b) ? "bluetooth-active-symbolic" : "bluetooth-disabled-symbolic",
+            size: size,
         })
     }),
     on_primary_click: () => {
         closeWin(winName)
         App.toggleWindow(winName)
     },
-    on_hover: () => btTooltip.visible = true,
-    setup: self => self.on("leave-notify-event", () => btTooltip.visible = false)
+    setup: self => self.hook(bluetooth, () => self.tooltip_text = getBT())
 })

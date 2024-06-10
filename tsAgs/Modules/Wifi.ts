@@ -1,6 +1,6 @@
 const Network = await Service.import("network")
 import closeWin from "tsAgs/Functions/closeWin";
-import Tooltips from "tsAgs/Functions/Tooltips.ts";
+import { size } from "tsAgs/main"; 
 
 const wifiWin = "wifi";
 
@@ -57,6 +57,7 @@ const wifiBoxConetents = Widget.Box({
         Widget.Box({
            class_name: "wifiToggleButton",
            hexpand: true,
+           spacing: 10,
            children: [
                 Widget.Label({
                     class_name: "WifiMenuLabel",
@@ -82,6 +83,7 @@ export const wifiWindow = () => Widget.Window({
     class_name: wifiWin,
     name: wifiWin,
     anchor: ["top", "right"],
+    margins: [10, 100],
     child: wifiBoxConetents,
     keymode: "exclusive",
     setup: self => self.keybind("Escape", () => {
@@ -89,26 +91,18 @@ export const wifiWindow = () => Widget.Window({
     }),
 })
 
-const connWifiTooptip = Tooltips(
-    {
-        name: "wifiToopTip",
-        class_name: "wifiToolTip",
-        anchor: ["top", "right"],
-    }, 
-)
-
-connWifiTooptip.child.child.hook(Network, () => {
+function getWifi() {
     if (!Network.wifi.enabled)
-        connWifiTooptip.child.child.label = "Enable internet"
+        return "Enable internet"
     else
     {
         if (Network.wifi.internet === "disconnected")
-            connWifiTooptip.child.child.label = "Connected but no internet :("
+            return "Connected but no internet :("
         else
-            connWifiTooptip.child.child.label = Network.wifi.ssid?.toString() || ""
+            return Network.wifi.ssid?.toString() || ""
 
     }
-})
+}
 
 export default () => {
 
@@ -117,18 +111,19 @@ export default () => {
         children: [
             Widget.EventBox({
                 class_name: "WifiButtonBar",
-                onHover: () => { connWifiTooptip.visible = true },
-                setup: self => self.on("leave-notify-event", () => { connWifiTooptip.visible = false }),
+                setup: self => self
+                .hook(Network, () => {
+                    self.tooltip_text = getWifi()
+                }),
                 child: Widget.Icon({
                     class_name: "WifiButtonIconBar",
+                    size: size,
                     icon: Network.wifi.bind("icon_name")
                 }),
                 on_primary_click: () => { 
                     closeWin(wifiWin)
                     App.toggleWindow(wifiWin)
                     Network.wifi.bind("enabled") && Network.wifi.scan()
-                    if (connWifiTooptip.visible)
-                        connWifiTooptip.visible = false
                 }
             }),
         ]

@@ -2,6 +2,7 @@ const battery = await Service.import('battery')
 import Tooltips from "tsAgs/Functions/Tooltips"
 import closeWin from "tsAgs/Functions/closeWin"
 const pp = await Service.import("powerprofiles")
+const hypr = await Service.import("hyprland")
 
 globalThis.notifies = false
 
@@ -13,12 +14,13 @@ const batteryTooltip = Tooltips(
     },
 )
 
-batteryTooltip.child.child.hook(battery, () => {
+function batt() {
+    let ret: string
     if (battery.time_remaining/3600 > 1)
-        batteryTooltip.child.child.label = `${battery.percent}%\n${Math.ceil(battery.time_remaining/3600)}hrs left`
+        ret = `${battery.percent}%\n${Math.ceil(battery.time_remaining/3600)}hrs left`
     else
     {
-        batteryTooltip.child.child.label = `${battery.percent}%\n${Math.ceil(battery.time_remaining/60)}mins left`
+        ret = `${battery.percent}%\n${Math.ceil(battery.time_remaining/60)}mins left`
     }
     if (!globalThis.notifies && battery.percent <= 30 && !battery.charging)
     {
@@ -28,15 +30,20 @@ batteryTooltip.child.child.hook(battery, () => {
                 body: "Connect to the charger NOW",
                 iconName: "dialog-warning-symbolic"
             })
+            hypr.messageAsync("keyword animations:enabled false")
+            hypr.messageAsync("keyword decoration:blur false")
         }
         catch(e) { console.log(e)}
         globalThis.notifies = true            
     }
     if (globalThis.notifies && battery.charging)
+    {
         globalThis.notifies = false
-})
+        hypr.messageAsync("reload")
+    }
 
-batteryTooltip.margins = [10, 60]
+    return ret
+}
 
 export const powerProfile = () => {
 
@@ -132,8 +139,7 @@ export const Batt = () => {
     return Widget.EventBox({
         class_name: "BatteryMainEventBox",
         child: battContents,
-        on_hover: () => batteryTooltip.visible = true,
-        setup: self => self.on("leave-notify-event", () => batteryTooltip.visible = false),
+        setup: self => self.hook(battery, () => self.tooltip_text = batt()),
         on_primary_click: () => {
             closeWin("PP")
             App.toggleWindow("PP")

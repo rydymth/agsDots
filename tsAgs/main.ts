@@ -3,7 +3,6 @@ import { ClockWidget, clockWin } from "./Modules/Clock.ts"
 import Spotlight from "./Modules/Spotlight.ts"
 import Wifi, { wifiWindow } from "./Modules/Wifi.ts"
 import { btBarButton, btWindow } from "./Modules/Bluetooth"
-import { barBox } from "./Modules/hyprland"
 import { indFn, audioWin } from "./Modules/Audio"
 import { volOSD } from "./Functions/OSD"
 import { NotificationPopups } from "./Functions/Notifications"
@@ -11,10 +10,14 @@ import { NCWindow, noitfCenter } from "./Modules/NotificationCenter"
 import SysTray from "./Modules/Systray"
 import { Media } from "./Modules/Media"
 import closeWin from "./Functions/closeWin"
-// const hyprland = await Service.import("hyprland");
-// import { Workspace } from "types/service/hyprland";
-import Monitor from "./Functions/Monitor"
+const hypr = await Service.import("hyprland");
+import Monitor, { backAll } from "./Functions/Monitor"
 const mpris = await Service.import("mpris")
+import Docs from "./Modules/Docs" 
+import { mainMenu, mainMenuWindow } from "./Modules/mainMenu" 
+export const size = 14;
+
+App.addIcons(`/home/rudy/.config/ags/assets`)
 
 const mediaWin = Widget.Window({
     class_name: "MediaPlay",
@@ -23,7 +26,7 @@ const mediaWin = Widget.Window({
     anchor: ["top", "right"],
     margins: [10, 170],
     child: Media(),
-    keymode: "exclusive",
+    keymode: "on-demand",
     setup: self => self
         .keybind("Escape", () => {
             App.closeWindow(self.name || "")
@@ -59,7 +62,14 @@ export const Bar = (mon: number) => {
             Widget.Box({
                 class_name: "leftStartBar",
                 hpack: "start",
-                child: barBox(mon)
+                child: mainMenu()
+            }),
+            Widget.Label({
+                class_name: "ActiveWinName",
+                setup: self => self.hook(hypr, () => {
+                    self.label = hypr.active.client.class
+                    self.toggleClassName("activeWinNameEmpty", hypr.active.client.class === "")
+                })
             })
         ]
     })
@@ -145,35 +155,66 @@ export const Bar = (mon: number) => {
         center_widget: Widget.Box({
             hexpand: true,
             hpack: "center",
-            children: []
+            spacing: 10,
+            children: [
+                Docs(mon)
+            ]
         }),
         end_widget: Right
     })
 
     return Widget.Window({
-        visible: false,
+        visible: true,
         monitor: mon,
         class_name: `bar-${mon}`,
         name: `bar-${mon}`,
         margins: [0, 0],
         exclusivity: "exclusive",
         anchor: ["left", "top", "right"],
+        layer: "top",
         child: BarContents,
+//        setup: self => self.hook(hypr, () => {
+//            let ws = hypr.getWorkspace(hypr.active.workspace.id)
+//            if (ws && !globalThis.changed)
+//            {                
+//                if (ws.windows === 0)
+//                    self.visible = true
+//                else
+//                    self.visible = false
+//            }
+//        })
         })
 }
+
+export const back = (mon: number) => Widget.Window({
+    visible: true,
+    monitor: mon,
+    name: `back-${mon}`,
+    class_name: `back-${mon}`,
+    exclusivity: "ignore",
+    anchor: ["top", "left", "right", "bottom"],
+    layer: "bottom",
+    child: Widget.EventBox({
+        hexpand: true,
+        vexpand: true,
+        on_primary_click: () => closeWin()
+    })
+})    
 
 try {
 
     App.config({
         windows: [
             ...Monitor(),
+            ...backAll(),
+            mainMenuWindow,
             Spotlight(),
             wifiWindow(),
             btWindow(),
             audioWin("speaker"),
             audioWin("microphone"),
             volOSD,
-            NotificationPopups(0),
+            NotificationPopups(),
             NCWindow,
             mediaWin,
             clockWin,

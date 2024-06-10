@@ -60,13 +60,13 @@ const osd = (labelName: string, type: string) =>
         const together = Widget.Box({
             vertical: true,
             class_name: labelName.concat("Osd"),
-            children: [Widget.Box([Ind, Val]), progress]
+            children: [Widget.Box({spacing: 10},Ind, Val), progress]
         })
         
         return together
     } 
     
-const osdWin = ( { name, class_name, anchor, child }: WindowProps, gobject: Connectable, signal: string) => {
+const osdWin = ( { name, class_name, anchor, child, margins }: WindowProps, gobject: Connectable, signal: string) => {
     let count = 0
     return Widget.Window({
         visible: false,
@@ -95,6 +95,7 @@ export const volOSD = osdWin(
         name: "Volume",
         class_name: "VolumeOSD",
         anchor: [],
+        margins: [10, 10],
         child: volOsdChild
     },
     audio.speaker,
@@ -106,6 +107,7 @@ export const screenOSD = osdWin(
         name: "ScreenBrightness",
         class_name: "screenOSD",
         anchor: ["top"],
+        margins: [10, 10],
         child: screenOsdChild
     },
     Brightness,
@@ -117,6 +119,7 @@ export const kbdOSD = osdWin(
         name: "kbdBrightness",
         class_name: "kbdOSD",
         anchor: ["bottom"],
+        margins: [10, 10],
         child: kbdOsdChild
     },
     KeyboardBrightness,

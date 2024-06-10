@@ -1,6 +1,7 @@
 import closeWin from "tsAgs/Functions/closeWin";
 import { notificationPopupBody } from "tsAgs/Functions/Notifications";
 const notifs = await Service.import("notifications")
+import { size } from "tsAgs/main";
 
 const notifGroup = () => {
     return Widget.Box({
@@ -169,7 +170,7 @@ export const NCWindow = Widget.Window({
 
 export const noitfCenter = () => Widget.EventBox({
     class_name: "notifBarEventBox",
-    child: Widget.Icon("org.gnome.Settings-notifications-symbolic"),
+    child: Widget.Icon({icon: "org.gnome.Settings-notifications-symbolic", size: size}),
     on_primary_click: () => {
         closeWin("agsNC")
         App.toggleWindow("agsNC")

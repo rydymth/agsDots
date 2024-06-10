@@ -1,4 +1,3 @@
-import Tooltips from "tsAgs/Functions/Tooltips"
 import closeWin from "tsAgs/Functions/closeWin"
 
 const date = Variable("", {
@@ -8,18 +7,6 @@ const date = Variable("", {
 const year = Variable("", {
     poll: [1000, 'date "+%a %e %b %Y"'],
 })
-
-const clockToolTip = Tooltips(
-    {
-        name: "clockWin",
-        class_name: "clockWin",
-        anchor: ["top", "right"],
-    },
-   undefined,
-   undefined,
-   //@ts-ignore
-   year.bind("value").as(y => `${y}`)
-)
 
 export const clockWin = Widget.Window({
     visible: false,
@@ -45,8 +32,7 @@ export const ClockWidget = () => Widget.EventBox({
             }),
         ],
     }),
-    on_hover: () => clockToolTip.visible = true,
-    setup: self => self.on("leave-notify-event", () => clockToolTip.visible = false),
+    tooltip_text: year.bind("value").as(y => `${y}`),
     on_primary_click: () => {
             closeWin("clockWin")
             App.toggleWindow(clockWin.name || "") 

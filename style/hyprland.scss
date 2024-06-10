@@ -1,16 +1,59 @@
 @import "./colors";
 
 .workspacesBox {
+  background-color: transparent;
+  color: $insensitive_fg_color;
+  padding: 0px 10px;
+
+  .Active {
+    color: $success_bg_color;
+  }
+
+  .RevealerContainer {
     background-color: transparent;
-    color: $insensitive_fg_color;
-    padding: 0px 10px;
-    
-    .Active {
-        color: $success_bg_color;
+    padding: 0px 5px;
+  }
+}
+
+
+.DockAppIconEB {
+  &:hover {
+    .DockAppIcon {
+      -gtk-icon-effect: highlight;
     }
-    
-    .RevealerContainer {
-        background-color: transparent;
-        padding: 0px 5px;
+  }
+}
+
+.Dock {
+  .Doc0Clients {
+    padding: 0.3em 1.5em;
+    border-radius: 11px;
+    background-color: rgba($theme_unfocused_bg_color, 0.5);
+    margin: 0.009em 0.03em 0.007em;
+  }
+
+  .DockWsElement {
+    padding: 0.01em 0.7em;
+    border-radius: 5px;
+    background-color: rgba($theme_unfocused_bg_color, 0.5);
+    margin: 0.5em 0.03em 0.5em;
+
+    .DockItem {
+      &:hover {
+        .DockAppIcon {
+          -gtk-icon-effect: highlight;
+        }
+      }
     }
+  }
+}
+
+
+.ActiveWsElement {
+  color: $success_color;
+  font-size: 1.15em;
+}
+
+.activeWinNameEmpty {
+  background-color: transparent;
 }

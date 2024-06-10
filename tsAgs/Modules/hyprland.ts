@@ -1,8 +1,55 @@
 const hyprland = await Service.import("hyprland");
 const app = await Service.import("applications")
-import { Workspace, Monitor } from "types/service/hyprland";
+import { Workspace } from "types/service/hyprland";
 
-const wsDisptach = (ws: Workspace) => hyprland.messageAsync(`dispatch workspace ${ws.id}`)
+/*
+try{
+    hyprland.connect("workspace-added", () => {
+        Utils.execAsync(['killall', 'hyprpaper'])
+        .catch((c) => console.log(c))
+
+        let random = Math.ceil(Math.random()*27)
+        if (random === 13)
+            random = 0
+        Utils.execAsync(["bash", "/home/rudy/.config/script/wllppr.sh", `wall${random}.png`])
+        .catch((c) => console.log(c))
+
+        Utils.execAsync(['hyprpaper', '-n'])
+        .catch((c) => console.log(c))
+        })
+
+    hyprland.connect("workspace-removed", () => {
+        Utils.execAsync(['killall', 'hyprpaper'])
+        .catch((c) => console.log(c))
+        let random = Math.ceil(Math.random()*27)
+        if (random === 13)
+            random = 0
+        Utils.execAsync(["bash", "/home/rudy/.config/script/wllppr.sh", `wall${random}.png`])
+        .catch((c) => console.log(c))
+        Utils.execAsync(['hyprpaper', '-n'])
+        .catch((c) => console.log(c))
+    })
+}
+catch(e) {
+    Utils.notify("Ahhh Shoot there is an error", `And the error is ${e}`, "dialog-information" )
+}
+*/
+
+const wsDisptach = (ws: Workspace) => {
+    hyprland.messageAsync(`dispatch workspace ${ws.id}`)
+    /*
+    Utils.execAsync(['killall', 'hyprpaper']).catch((e) => Utils.notify({
+        "urgency": "critical", "appName": "System", "iconName": "dialog-information", "body": `This is the error\n${e}`
+    }))
+    let random = Math.ceil(Math.random()*27)
+    if (random === 13)
+        random = 0
+    Utils.execAsync(["bash", "/home/rudy/.config/script/wllppr.sh", `wall${random}.png`]).catch((c) => Utils.notify({
+            "urgency": "critical", "appName": "System", "iconName": "dialog-information", "body": `This is the error\n${c}`
+        }))
+    Utils.execAsync(['hyprpaper', '-n'])
+    */
+}
 
 export const barBox = (mon: number) =>{
 
