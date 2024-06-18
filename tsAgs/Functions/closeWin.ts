@@ -1,4 +1,4 @@
-const wins = ["wifi", "bluetooth", "microphoneWindow", "speakerWindow", "agsNC", "mpris", "clockWin", "PP", "mainMenuWin"]
+const wins = ["wifi", "bluetooth", "microphoneWindow", "speakerWindow", "agsNC", "mpris", "clockWin", "PP", "mainMenuWin", "instanceWindow"]
 
 export default (winName: string = "") => {
     wins.filter(w => w != winName).map(wn => {

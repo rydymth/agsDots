@@ -170,7 +170,7 @@ export const NCWindow = Widget.Window({
 
 export const noitfCenter = () => Widget.EventBox({
     class_name: "notifBarEventBox",
-    child: Widget.Icon({icon: "org.gnome.Settings-notifications-symbolic", size: size}),
+    child: Widget.Icon({icon: "notif2-symbolic", size: size}),
     on_primary_click: () => {
         closeWin("agsNC")
         App.toggleWindow("agsNC")

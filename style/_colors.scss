@@ -1,185 +1,81 @@
-/* SCSS Color Definitions for Pop Theme from Cosmic */
-
-$base000: rgba(22, 22, 22, 1);
-/* Used as theme_bg_color, theme_base_color, etc. */
-$base00: rgba(22, 22, 22, 0.3);
-/* Used as theme_bg_color, theme_base_color, etc. */
-$base01: rgba(38, 38, 38, 0.3);
-/* Used as insensitive_base_color, etc. */
-$base02: #393939;
-/* Used as placeholder_text_color, etc. */
-$base03: #525252;
-/* Used as borders, unfocused_borders, etc. */
-$base04: #dde1e6;
-/* Used as theme_unfocused_fg_color, etc. */
-$base05: #f2f4f8;
-/* Used as theme_text_color, theme_fg_color, etc. */
-$base06: #ffffff;
-/* Used as wm_title, wm_button_close_hover_bg, etc. */
-$base07: #08bdba;
-/* Used as success_color, etc. */
-$base08: #3ddbd9;
-/* Additional color */
-$base09: #78a9ff;
-/* Used as warning_color, etc. */
-$base0A: #ee5396;
-/* Used as error_color, etc. */
-$base0B: #33b1ff;
-/* Used as success_fg_color, etc. */
-$base0C: #ff7eb6;
-/* Additional color */
-$base0D: #42be65;
-/* Used as success_bg_color, etc. */
-$base0E: #be95ff;
-/* Additional color */
-$base0F: #82cfff;
-/* Additional color */
-
-/* Mapping the new color scheme to the existing SCSS variables */
-
-$theme_fg_color: $base05;
-/* text color for entries, views and content in general */
-$theme_text_color: $base05;
-/* widget base background color */
-$theme_bg_color: $base00;
-$theme_bg_color_noOp: $base000;
-/* text widgets and the like base background color */
-$theme_base_color: $base00;
-/* base background color of selections */
-$theme_selected_bg_color: $base08;
-/* text/foreground color of selections */
-$theme_selected_fg_color: rgba(0, 0, 0, 0.87);
-/* base background color of insensitive widgets */
-$insensitive_bg_color: $base00;
-/* text foreground color of insensitive widgets */
-$insensitive_fg_color: rgba($base05, 0.5);
-/* insensitive text widgets and the like base background color */
-$insensitive_base_color: $base01;
-/* widget text/foreground color on backdrop windows */
-$theme_unfocused_fg_color: $base05;
-/* text color for entries, views and content in general on backdrop windows */
-$theme_unfocused_text_color: $base05;
-/* widget base background color on backdrop windows */
-$theme_unfocused_bg_color: $base00;
-/* text widgets and the like base background color on backdrop windows */
-$theme_unfocused_base_color: $base00;
-/* base background color of selections on backdrop windows */
-$theme_unfocused_selected_bg_color: $base08;
-/* text/foreground color of selections on backdrop windows */
-$theme_unfocused_selected_fg_color: rgba(0, 0, 0, 0.87);
-/* insensitive color on backdrop windows */
-$unfocused_insensitive_color: rgba($base05, 0.5);
-/* widgets main borders color */
-$borders: rgba($base04, 0.12);
-/* widgets main borders color on backdrop windows */
-$unfocused_borders: rgba($base04, 0.12);
-/* these are pretty self-explanatory */
-$warning_color: $base09;
-$error_color: $base0A;
-$success_color: $base0D;
-/* these colors are exported for the window manager and shouldn't be used in applications,
-read if you used those and something breaks with a version upgrade you're on your own... */
-$wm_title: $base05;
-$wm_unfocused_title: rgba($base05, 0.7);
-$wm_highlight: rgba($base05, 0.1);
-$wm_bg: $base00;
-$wm_unfocused_bg: $base00;
-$wm_button_close_icon: $base00;
-$wm_button_close_hover_bg: $base08;
-$wm_button_close_active_bg: $base07;
-/* FIXME this is really an API */
-$content_view_bg: $base00;
-$placeholder_text_color: $base02;
-/* Very contrasty background for text views (@theme_text_color foreground) */
-$text_view_bg: $base01;
-$budgie_tasklist_indicator_color: $base05;
-$budgie_tasklist_indicator_color_active: $base05;
-$budgie_tasklist_indicator_color_active_window: $base03;
-$budgie_tasklist_indicator_color_attention: $base09;
-$STRAWBERRY_100: $base0C;
-$STRAWBERRY_300: $base0C;
-$STRAWBERRY_500: $base0C;
-$STRAWBERRY_700: $base0C;
-$STRAWBERRY_900: $base0C;
-$ORANGE_100: $base0C;
-$ORANGE_300: $base0C;
-$ORANGE_500: $base0C;
-$ORANGE_700: $base0C;
-$ORANGE_900: $base0C;
-$BANANA_100: $base0C;
-$BANANA_300: $base0C;
-$BANANA_500: $base0C;
-$BANANA_700: $base0C;
-$BANANA_900: $base0C;
-$LIME_100: $base0C;
-$LIME_300: $base0C;
-$LIME_500: $base0C;
-$LIME_700: $base0C;
-$LIME_900: $base0C;
-$BLUEBERRY_100: $base0C;
-$BLUEBERRY_300: $base0C;
-$BLUEBERRY_500: $base0C;
-$BLUEBERRY_700: $base0C;
-$BLUEBERRY_900: $base0C;
-$GRAPE_100: $base0C;
-$GRAPE_300: $base0C;
-$GRAPE_500: $base0C;
-$GRAPE_700: $base0C;
-$GRAPE_900: $base0C;
-$COCOA_100: $base0C;
-$COCOA_300: $base0C;
-$COCOA_500: $base0C;
-$COCOA_700: $base0C;
-$COCOA_900: $base0C;
-$SILVER_100: $base0C;
-$SILVER_300: $base0C;
-$SILVER_500: $base0C;
-$SILVER_700: $base0C;
-$SILVER_900: $base0C;
-$SLATE_100: $base0C;
-$SLATE_300: $base0C;
-$SLATE_500: $base0C;
-$SLATE_700: $base0C;
-$SLATE_900: $base0C;
-$BLACK_100: $base0C;
-$BLACK_300: $base0C;
-$BLACK_500: $base0C;
-$BLACK_700: $base0C;
-$BLACK_900: $base0C;
-
-/* GTK LIBADWAITA NAMED COLORS -- USE RESPONSIBLY! */
-$accent_bg_color: $base08;
-$accent_fg_color: rgba(0, 0, 0, 0.87);
-$accent_color: $base08;
-$destructive_bg_color: $base0A;
-$destructive_fg_color: rgba(0, 0, 0, 0.87);
-$destructive_color: $base0A;
-$success_bg_color: $base0D;
-$success_fg_color: rgba(0, 0, 0, 0.87);
-$success_color: $base0D;
-$warning_bg_color: $base09;
-$warning_fg_color: rgba(0, 0, 0, 0.87);
-$warning_color: $base09;
-$error_bg_color: $base0A;
-$error_fg_color: rgba(0, 0, 0, 0.87);
-$error_color: $base0A;
-$window_bg_color: $base00;
-$window_fg_color: $base05;
-$view_bg_color: $base00;
-$view_fg_color: $base05;
-$headerbar_bg_color: $base00;
-$headerbar_fg_color: $base05;
-$headerbar_border_color: rgba($base04, 0.12);
-$headerbar_backdrop_color: $window_bg_color;
-$headerbar_shade_color: rgba(0, 0, 0, 0.36);
-$card_bg_color: $base00;
-$card_fg_color: $base05;
-$card_shade_color: rgba(0, 0, 0, 0.36);
-$dialog_bg_color: $base00;
-$dialog_fg_color: $base05;
-$popover_bg_color: $base00;
-$popover_fg_color: $base05;
-$thumbnail_bg_color: $base00;
-$thumbnail_fg_color: $base05;
-$shade_color: rgba(0, 0, 0, 0.36);
-$scrollbar_outline_color: rgba(0, 0, 0, 0.5);
+$theme_fg_color: rgba(0, 0, 0, 0.87);
+$theme_text_color: rgba(0, 0, 0, 0.87);
+$theme_bg_color: #F2F2F2;
+$theme_base_color: #FFFFFF;
+$theme_selected_bg_color: #009688;
+$insensitive_bg_color: #F2F2F2;
+$insensitive_fg_color: rgba(0, 0, 0, 0.38);
+$insensitive_base_color: #FAFAFA;
+$theme_unfocused_fg_color: rgba(0, 0, 0, 0.87);
+$theme_unfocused_text_color: rgba(0, 0, 0, 0.87);
+$theme_unfocused_bg_color: #F2F2F2;
+$theme_unfocused_base_color: #FFFFFF;
+$theme_unfocused_selected_bg_color: #009688;
+$unfocused_insensitive_color: rgba(0, 0, 0, 0.38);
+$borders: rgba(0, 0, 0, 0.12);
+$unfocused_borders: rgba(0, 0, 0, 0.12);
+$warning_color: #FFD600;
+$error_color: #E53935;
+$success_color: #0F9D58;
+$wm_title: rgba(0, 0, 0, 0.87);
+$wm_unfocused_title: rgba(0, 0, 0, 0.6);
+$wm_highlight: rgba(255, 255, 255, 0.4);
+$wm_bg: #FFFFFF;
+$wm_unfocused_bg: #FAFAFA;
+$content_view_bg: #FFFFFF;
+$placeholder_text_color: #666666;
+$text_view_bg: #FFFFFF;
+$budgie_tasklist_indicator_color: rgba(0, 0, 0, 0.6);
+$budgie_tasklist_indicator_color_active: #009688;
+$budgie_tasklist_indicator_color_active_window: rgba(90, 184, 175, 0.8075);
+$budgie_tasklist_indicator_color_attention: #FFD600;
+$STRAWBERRY_100: #FF9262;
+$STRAWBERRY_300: #FF793E;
+$STRAWBERRY_500: #F15D22;
+$STRAWBERRY_700: #CF3B00;
+$STRAWBERRY_900: #AC1800;
+$ORANGE_100: #FFDB91;
+$ORANGE_300: #FFCA40;
+$ORANGE_500: #FAA41A;
+$ORANGE_700: #DE8800;
+$ORANGE_900: #C26C00;
+$BANANA_100: #FFFFA8;
+$BANANA_300: #FFFA7D;
+$BANANA_500: #FFCE51;
+$BANANA_700: #D1A023;
+$BANANA_900: #A27100;
+$LIME_100: #A2F3BE;
+$LIME_300: #8ADBA6;
+$LIME_500: #73C48F;
+$LIME_700: #479863;
+$LIME_900: #1C6D38;
+$BLUEBERRY_100: #94A6FF;
+$BLUEBERRY_300: #6A7CE0;
+$BLUEBERRY_500: #3F51B5;
+$BLUEBERRY_700: #213397;
+$BLUEBERRY_900: #031579;
+$GRAPE_100: #D25DE6;
+$GRAPE_300: #B84ACB;
+$GRAPE_500: #9C27B0;
+$GRAPE_700: #830E97;
+$GRAPE_900: #6A007E;
+$COCOA_100: #9F9792;
+$COCOA_300: #7B736E;
+$COCOA_500: #574F4A;
+$COCOA_700: #463E39;
+$COCOA_900: #342C27;
+$SILVER_100: #EEE;
+$SILVER_300: #CCC;
+$SILVER_500: #AAA;
+$SILVER_700: #888;
+$SILVER_900: #666;
+$SLATE_100: #888;
+$SLATE_300: #666;
+$SLATE_500: #444;
+$SLATE_700: #222;
+$SLATE_900: #111;
+$BLACK_100: #474341;
+$BLACK_300: #403C3A;
+$BLACK_500: #393634;
+$BLACK_700: #33302F;
+$BLACK_900: #2B2928;

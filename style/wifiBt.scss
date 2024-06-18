@@ -1,14 +1,17 @@
 @import "./vars";
 @import "./colors";
 
-.wifiBoxContents, .bluetoothBox {
-    @include networkColorBox();
+.wifiBoxContents,
+.bluetoothBox {
+  @include networkColorBox();
 }
 
-.BluetoothDeviceEventBox, .wifiList {
-    @include nwElements;
-    &:hover {
-        background-color: invert($color:  $hover-color);
-        color: invert($color: $foreground-color)
-    }
+.BluetoothDeviceEventBox,
+.wifiList {
+  @include nwElements;
+
+  &:hover {
+    background-color: $hover_color;
+    color: invert($theme_fg_color);
+  }
 }

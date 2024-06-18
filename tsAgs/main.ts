@@ -11,11 +11,11 @@ import SysTray from "./Modules/Systray"
 import { Media } from "./Modules/Media"
 import closeWin from "./Functions/closeWin"
 const hypr = await Service.import("hyprland");
-import Monitor, { backAll } from "./Functions/Monitor"
-const mpris = await Service.import("mpris")
-import Docs from "./Modules/Docs" 
+import Monitor, { backAll, dockAll } from "./Functions/Monitor"
+import { wsps, runAppWin }  from "./Modules/Docs" 
 import { mainMenu, mainMenuWindow } from "./Modules/mainMenu" 
-export const size = 14;
+import workspaces from "./Modules/workspaces"
+export const size = 11;
 
 App.addIcons(`/home/rudy/.config/ags/assets`)
 
@@ -31,10 +31,6 @@ const mediaWin = Widget.Window({
         .keybind("Escape", () => {
             App.closeWindow(self.name || "")
         })
-        .hook(mpris, () => {
-            self.visible = true;
-            Utils.timeout(3000, () => { self.visible = false })
-        }),
 })
 
 function MediaGet() {
@@ -64,13 +60,6 @@ export const Bar = (mon: number) => {
                 hpack: "start",
                 child: mainMenu()
             }),
-            Widget.Label({
-                class_name: "ActiveWinName",
-                setup: self => self.hook(hypr, () => {
-                    self.label = hypr.active.client.class
-                    self.toggleClassName("activeWinNameEmpty", hypr.active.client.class === "")
-                })
-            })
         ]
     })
 
@@ -154,10 +143,11 @@ export const Bar = (mon: number) => {
         start_widget: Left,
         center_widget: Widget.Box({
             hexpand: true,
+            class_name: "CenterBar",
             hpack: "center",
             spacing: 10,
             children: [
-                Docs(mon)
+                workspaces(mon)
             ]
         }),
         end_widget: Right
@@ -201,13 +191,45 @@ export const back = (mon: number) => Widget.Window({
     })
 })    
 
+export const Dock = (mon: number) => Widget.Window({
+    visible: true,
+    monitor: mon,
+    name: `Dock-${mon}`,
+    class_name: `Dock-${mon}`,
+    exclusivity: "exclusive",
+    anchor: ["bottom"],
+    layer: "top",
+    child: wsps(mon),
+    setup: self => self
+    // .hook(hypr, () => {
+    //     let ws = hypr.getWorkspace(hypr.active.workspace.id)
+    //     if (ws && !globalThis.changed)
+    //     {                
+    //         if (ws.windows === 0)
+    //             self.visible = true
+    //         else
+    //             self.visible = false
+    //     }
+    // })
+    // .hook(hypr, (_, name: string, data: string) => {
+    //     if (name === "movewindowv2" || "openwindow" || "closewindow")
+    //     {
+    //         Utils.timeout(100, () => self.visible = true)
+    //         Utils.timeout(2000, () => self.visible = false)
+            
+    //     }
+    // }, "event")
+})
+
 try {
 
     App.config({
         windows: [
             ...Monitor(),
             ...backAll(),
+            ...dockAll(),
             mainMenuWindow,
+            runAppWin,
             Spotlight(),
             wifiWindow(),
             btWindow(),

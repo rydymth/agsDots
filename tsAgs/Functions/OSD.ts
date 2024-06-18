@@ -74,6 +74,8 @@ const osdWin = ( { name, class_name, anchor, child, margins }: WindowProps, gobj
         class_name,
         anchor,
         child,
+        margins,
+        layer: "overlay",
         setup: self => self.hook(gobject, () => {
             count++;
             self.visible = true

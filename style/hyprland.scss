@@ -1,59 +1,56 @@
 @import "./colors";
 
-.workspacesBox {
-  background-color: transparent;
-  color: $insensitive_fg_color;
-  padding: 0px 10px;
+.instanceWindow {
+  background-color: rgba($theme_bg_color, 0.5);
+  border-radius: 1.2em;
 
-  .Active {
-    color: $success_bg_color;
-  }
-
-  .RevealerContainer {
-    background-color: transparent;
-    padding: 0px 5px;
-  }
-}
-
-
-.DockAppIconEB {
-  &:hover {
-    .DockAppIcon {
-      -gtk-icon-effect: highlight;
-    }
-  }
-}
-
-.Dock {
-  .Doc0Clients {
-    padding: 0.3em 1.5em;
-    border-radius: 11px;
-    background-color: rgba($theme_unfocused_bg_color, 0.5);
-    margin: 0.009em 0.03em 0.007em;
-  }
-
-  .DockWsElement {
-    padding: 0.01em 0.7em;
-    border-radius: 5px;
-    background-color: rgba($theme_unfocused_bg_color, 0.5);
-    margin: 0.5em 0.03em 0.5em;
+  .InstanceBox {
+    padding: 0.5em;
+    margin: 0.5em;
 
     .DockItem {
+      padding: 0.5em;
+
       &:hover {
-        .DockAppIcon {
-          -gtk-icon-effect: highlight;
-        }
+        border-radius: 0.9em;
+        background-color: invert(rgba($theme_bg_color, 0.7));
+        color: black;
       }
     }
   }
 }
 
-
-.ActiveWsElement {
-  color: $success_color;
-  font-size: 1.15em;
+.DockBox {
+  border-radius: 0.5em;
+  background-color: rgba($insensitive_bg_color, 0.7);
+  padding: 0.7em 0.5em;
+  margin: 0.45em 0.5em;
+  color: $insensitive_fg_color;
 }
 
-.activeWinNameEmpty {
-  background-color: transparent;
+.activeAppClass {
+  .DockClassIcon {
+    border-radius: 0.5em;
+    padding: 0 0.3em;
+    background-color: rgba($theme_selected_bg_color, 0.3);
+    -gtk-icon-transform: rotate(15deg);
+    -gtk-icon-effect: highlight;
+  }
+}
+
+@keyframes pop {
+  from {
+    -gtk-icon-transform: translateY(-10px);
+  }
+
+  to {
+    -gtk-icon-transform: translateY(0px);
+  }
+}
+
+.newAppAnim {
+  animation-name: pop;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
 }

@@ -32,7 +32,7 @@
         }
 
         highlight {
-            background-color: $theme_fg_color;
+            background-color: invert($theme_bg_color);
         }
 
         slider {

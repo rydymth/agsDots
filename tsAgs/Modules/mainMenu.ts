@@ -1,4 +1,5 @@
 import closeWin from "tsAgs/Functions/closeWin"
+import { size } from "tsAgs/main"
 
 const leftLabel = (label: string) => { 
   return Widget.Label({justification :"left", xalign :0, hpack :"start", hexpand :true, label: label})
@@ -67,9 +68,8 @@ export const mainMenu = () => Widget.EventBox({
   class_name: "mainMenuLogo",
   child: Widget.Icon({
     class_name: "mainMenuLogo",
-    icon: "Apple-symbolic",
-    size: 20,
-    css: "color: black",
+    icon: "archLinux-symbolic",
+    size: size+10,
   }),
   on_primary_click: () => {
     closeWin("mainMenuWin")

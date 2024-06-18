@@ -10,7 +10,7 @@
   border-radius: 7px;
   &:hover {
     color: $theme_bg_color;
-    background-color: $theme_fg_color; 
+    background-color: invert($theme_bg_color); 
     padding: 5px;
   }
 }

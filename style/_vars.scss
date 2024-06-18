@@ -77,7 +77,7 @@ $notifFont: 14px;
 @mixin bar {
   background-color: rgba($theme_bg_color, 0.0);
   color: $foreground-color;
-  font-size: 0.9em;
+  font-size: 1em;
 }
 
 @mixin osd {

@@ -2,7 +2,7 @@
 @import "./colors";
 
 .notifActionEB {
-  background-color: rgba($theme-unfocused-selected-bg-color, 0.7);
+  background-color: rgba($theme-bg-color, 0.7);
   padding: 5px;
   margin: 5px;
 
@@ -38,7 +38,7 @@
 
   .notifAllContainer {
     margin: 0.7em 1.5em;
-    box-shadow: 0em 0em 0.2em 0.3em #161616;
+    /* box-shadow: 0em 0em 0.2em 0 #161616; */
     background-color: rgba($background-color, 0.5);
     border-radius: 7px;
     padding: 15px;
@@ -57,7 +57,7 @@
   @include notifcolor(14px);
   min-width: 450px;
   min-height: 450px;
-  box-shadow: 0 0 5px 3px $theme_bg_color;
+  /* box-shadow: 0 0 5px 3px $theme_bg_color; */
 }
 
 .notifImage,
@@ -68,10 +68,15 @@
 .notifGrpName {
   padding: 7px;
   margin: 5px;
-  background-color: rgba($theme-unfocused-selected-fg-color, 0.5);
+  background-color: rgba($theme_unfocused_bg_color, 0.5);
   border-radius: 15px;
 }
 
 .notifBodyRevealerFull {
   font-size: 0.75em;
+  color: $theme_unfocused_fg_color;
+}
+
+.notifSummary {
+  color: $theme_fg_color;
 }

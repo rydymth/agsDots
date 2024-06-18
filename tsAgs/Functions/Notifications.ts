@@ -98,6 +98,7 @@ export const notificationPopupBody = (n: Notification) => {
         justification: "center",
         xalign: 1,
         max_width_chars: 25,
+        wrap: true,
         useMarkup: true,
         label: n.summary
     })
@@ -384,6 +385,7 @@ export const NotificationPopups = () => {
         visible: poppy.as(p => p.length > 0),
         name: "RNotif",
         anchor: ["top", "right"],
+        layer: "overlay",
         margins: [30, 60],
         child: Widget.Box({
             class_name: "NotifPopups",
