@@ -398,16 +398,8 @@ export const NotificationPopups = () => {
         }),
     })
     .hook(notifs, () => {
-        Utils.execAsync(['mpv', '/home/rudy/.local/share/sounds/burnComplete.aif'])
+        Utils.execAsync(['gst-play-1.0', '/home/rudy/.local/share/sounds/burnComplete.aif'])
         .catch((e) => console.log(e))
     }, "notified")
-
-    .hook(notifs, () => {
-        console.log("Notified, killing mpv")
-        Utils.timeout(3000, () => {
-            Utils.exec('killall mpv')
-        })
-    }, "dismissed")
-
     return notifWind   
 }

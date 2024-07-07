@@ -15,7 +15,8 @@ import Monitor, { backAll, dockAll } from "./Functions/Monitor"
 import { wsps, runAppWin }  from "./Modules/Docs" 
 import { mainMenu, mainMenuWindow } from "./Modules/mainMenu" 
 import workspaces from "./Modules/workspaces"
-export const size = 11;
+// import { windowToggleButton, todoWin } from "./Functions/mdParser"
+export const size = 14;
 
 App.addIcons(`/home/rudy/.config/ags/assets`)
 
@@ -63,48 +64,20 @@ export const Bar = (mon: number) => {
         ]
     })
 
-    const RightBarReveal = Widget.Revealer({
-        class_name: "rightBarReveal",
-        reveal_child: false,
-        transition: "slide_left",
-        child: Widget.Box({
-            class_name: "rightBarRevealBox",
-            spacing: 10,
-            hexpand: true,
-            vpack: "fill",
-            children: [
-                SysTray(),
-                MediaGet(),
-                noitfCenter(),
-                indFn("speaker"),
-                indFn("microphone"),
-                btBarButton(),
-                Wifi(),
-             ]            
-        })
-    })
-
-    const revealerContainerIcon = Widget.EventBox({
-        class_name: "RevealerContainer",
-        child: Widget.Box({
-            spacing: 10,
-            class_name: "rightBarBoxIcon",
-            children: [
-                Widget.Icon({ icon: "pan-start-symbolic"}),
-            ]
-        }),
-        on_primary_click: () => { RightBarReveal.reveal_child = !RightBarReveal.reveal_child }, 
-    })
-
-    const together = Widget.Box({
-        class_name: "RightbarAllContainer",
+    const right =   Widget.Box({
+        class_name: "rightBarRevealBox",
         spacing: 10,
+        hexpand: true,
+        vpack: "fill",
         children: [
-            Widget.EventBox({
-                child: RightBarReveal,
-            }),
-            revealerContainerIcon,
-        ]
+            SysTray(),
+            MediaGet(),
+            noitfCenter(),
+            indFn("speaker"),
+            indFn("microphone"),
+            btBarButton(),
+            Wifi(),
+         ]            
     })
 
     const Right = Widget.Box({
@@ -117,7 +90,7 @@ export const Bar = (mon: number) => {
                 className: "RightStartBar",
                 hpack: "end",
                 spacing: 7,
-                child: together
+                child: right
             }),
 
             Widget.Box({
@@ -147,7 +120,8 @@ export const Bar = (mon: number) => {
             hpack: "center",
             spacing: 10,
             children: [
-                workspaces(mon)
+                workspaces(mon),
+                // checkBox("Do laundry")
             ]
         }),
         end_widget: Right
