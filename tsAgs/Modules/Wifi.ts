@@ -49,7 +49,7 @@ const wifiSelectionMenu = Widget.Box({
     })
 })
 
-const wifiBoxConetents = Widget.Box({
+export const wifiBoxConetents = () => Widget.Box({
     class_name: "wifiBoxContents",
     vertical: true,
     spacing: 5,
@@ -84,7 +84,7 @@ export const wifiWindow = () => Widget.Window({
     name: wifiWin,
     anchor: ["top", "right"],
     margins: [10, 100],
-    child: wifiBoxConetents,
+    child: wifiBoxConetents(),
     keymode: "exclusive",
     setup: self => self.keybind("Escape", () => {
         App.closeWindow(self.name || "")

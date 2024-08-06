@@ -15,7 +15,6 @@ import Monitor, { backAll, dockAll } from "./Functions/Monitor"
 import { wsps, runAppWin }  from "./Modules/Docs" 
 import { mainMenu, mainMenuWindow } from "./Modules/mainMenu" 
 import workspaces from "./Modules/workspaces"
-// import { windowToggleButton, todoWin } from "./Functions/mdParser"
 export const size = 14;
 
 App.addIcons(`/home/rudy/.config/ags/assets`)
@@ -59,7 +58,7 @@ export const Bar = (mon: number) => {
             Widget.Box({
                 class_name: "leftStartBar",
                 hpack: "start",
-                child: mainMenu()
+                child: workspaces(mon),
             }),
         ]
     })
@@ -119,8 +118,7 @@ export const Bar = (mon: number) => {
             class_name: "CenterBar",
             hpack: "center",
             spacing: 10,
-            children: [
-                workspaces(mon),
+            children: [ 
                 // checkBox("Do laundry")
             ]
         }),

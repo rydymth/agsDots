@@ -19,7 +19,7 @@ const osd = (labelName: string, type: string) =>
         
         const progress = Widget.LevelBar({
             class_name: "VolOsdProg",
-            width_request: 100,
+            width_request: 10,
             bar_mode: "discrete",
             max_value: 100,
         })
@@ -60,7 +60,7 @@ const osd = (labelName: string, type: string) =>
         const together = Widget.Box({
             vertical: true,
             class_name: labelName.concat("Osd"),
-            children: [Widget.Box({spacing: 10},Ind, Val), progress]
+            children: [Widget.Box({spacing: 10},Ind, Val)]
         })
         
         return together

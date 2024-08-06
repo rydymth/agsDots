@@ -77,7 +77,7 @@ const notifGroup = () => {
     })
 }
 
-const scrollable = Widget.Scrollable({
+export const scrollable = () => Widget.Scrollable({
     class_name: "notifScrollable",
     hscroll: "never",
     vscroll: "always",
@@ -89,7 +89,7 @@ const scrollable = Widget.Scrollable({
     })
 })
 
-const clear = Widget.Box({
+export const clear = () => Widget.Box({
     class_name: "Clear",
     hpack:"start",
     vpack: "start",
@@ -99,7 +99,7 @@ const clear = Widget.Box({
     })
 })
 
-const dnd = Widget.Box({
+export const dnd = () => Widget.Box({
     hpack:"end",
     vpack: "start",
     child: Widget.Button({
@@ -142,13 +142,13 @@ export const NCWindow = Widget.Window({
                             hpack: "start",
                             vpack: "center",
                             hexpand: true,
-                            child: clear
+                            child: clear()
                         }),
                         Widget.Box({
                             hpack: "end",
                             vpack: "center",
                             hexpand: true,
-                            child: dnd
+                            child: dnd()
                         })
                     ]
                  }),
@@ -162,7 +162,7 @@ export const NCWindow = Widget.Window({
                         self.label = "No Notifications"
                     })
                 }),
-                scrollable
+                scrollable()
             ]
         })
     })

@@ -159,7 +159,19 @@ export function wsps (mon: number) {
         appClass = "gtk settings"
       if (c[0] === "io.github.kaii_lb.Overskride")
         appClass = "overskride"
-      if (app.name.toLocaleLowerCase().includes(appClass || appTitle))
+      if (c[0] === "google-chrome")
+	appClass = "google chrome"
+      if (c[0] === "org.wezfurlong.wezterm")
+	appClass = "wezterm"
+      if (c[0] === "org.gnome.TextEditor")
+	appClass = "text editor"
+      if (c[0] === "org.gnome.Calculator")
+	appClass = "calculator"
+      if (c[0] === "blueman-manager")
+        appClass = "bluetooth manager"
+      if (c[0] === "nm-connection-editor")
+	appClass = "advanced network configuration"
+      if (app.name.toLocaleLowerCase().includes(appClass) || app.name.toLocaleLowerCase().includes(appTitle))
       {  
         runningApp.push(new runApps(app, c[0], c[1]))
       }
@@ -192,7 +204,19 @@ export function wsps (mon: number) {
               appClass = "gtk settings"
             if (c[0] === "io.github.kaii_lb.Overskride")
               appClass = "overskride"
-            if (app.name.toLocaleLowerCase().includes(appClass || appTitle))
+	    if (c[0] === "google-chrome")
+	      appClass = "google chrome"
+	    if (c[0] === "org.wezfurlong.wezterm")
+	      appClass = "wezterm"
+	    if (c[0] === "org.gnome.TextEditor")
+	      appClass = "text editor"
+	    if (c[0] === "org.gnome.Calculator")
+	      appClass = "calculator"
+            if (c[0] === "blueman-manager")
+	      appClass = "blueman-manager"
+	    if (c[0] === "nm-connection-editor")
+	      appClass = "advanced network configuration"
+	    if (app.name.toLocaleLowerCase().includes(appClass) || app.name.toLocaleLowerCase().includes(appTitle))
             {  
               runningApp.push(new runApps(app, c[0], c[1]))
             }

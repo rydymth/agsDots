@@ -99,6 +99,20 @@ const audioIcon = (type: string = "speaker") => Widget.Icon({
     })
 })
 
+export const audioWinContents = (type: string = "speaker") => 
+    Widget.Box(
+    {
+        class_name: "audioWindowContents",
+        vertical: true,
+    },
+    Widget.Box({
+            class_name: "audioIcSlide",
+            children: [ audioIcon(type), VolumeSlider(type)] 
+    }),
+    Widget.Separator(),
+    audioStreams(type)
+)
+
 export const audioWin = (type: string = "speaker") => Widget.Window({
     name:  `${type}Window`,
     class_name: "audioWindow".concat(`${type}`),
@@ -110,12 +124,6 @@ export const audioWin = (type: string = "speaker") => Widget.Window({
         hexpand: true,
         class_name: "audioWinBox",
         children: [
-            Widget.Box({
-                class_name: "audioIcSlide",
-                children: [ audioIcon(type), VolumeSlider(type)] 
-            }),
-            Widget.Separator(),
-            audioStreams(type)
         ]
     }),
     keymode: "exclusive",

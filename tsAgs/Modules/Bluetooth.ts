@@ -74,13 +74,7 @@ const getBT = () => {
     return `${bluetooth.connected_devices.filter( d => d.connected).length} devices connected`
 }
 
-export const btWindow = () => Widget.Window({
-    visible: false,
-    name: winName,
-    class_name: winName.concat("Window"),
-    anchor: ["top", "right"],
-    margins: [10, 120],
-    child: Widget.Box({
+export const btChild = () => Widget.Box({
         class_name: winName.concat("Box"),
         vertical: true,
         children: [
@@ -94,7 +88,15 @@ export const btWindow = () => Widget.Window({
                 children: bluetooth.bind("devices").as(d => d.filter(d => d.name).map(btDeviceList))
             })
         ]
-    }),
+    })
+
+export const btWindow = () => Widget.Window({
+    visible: false,
+    name: winName,
+    class_name: winName.concat("Window"),
+    anchor: ["top", "right"],
+    margins: [10, 120],
+    child: btChild(),
     keymode: "exclusive",
     setup: self => self.keybind("Escape", () => {
         App.closeWindow(self.name || "")

@@ -1,36 +1,64 @@
-$theme_fg_color: rgba(0, 0, 0, 0.87);
-$theme_text_color: rgba(0, 0, 0, 0.87);
-$theme_bg_color: #F2F2F2;
-$theme_base_color: #FFFFFF;
-$theme_selected_bg_color: #AB47BC;
-$theme_selected_fg_color: white;
-$insensitive_bg_color: #F2F2F2;
-$insensitive_fg_color: rgba(0, 0, 0, 0.38);
-$insensitive_base_color: #FAFAFA;
-$theme_unfocused_fg_color: rgba(0, 0, 0, 0.87);
-$theme_unfocused_text_color: rgba(0, 0, 0, 0.87);
-$theme_unfocused_bg_color: #F2F2F2;
-$theme_unfocused_base_color: #FFFFFF;
-$theme_unfocused_selected_bg_color: #AB47BC;
-$theme_unfocused_selected_fg_color: white;
-$unfocused_insensitive_color: rgba(0, 0, 0, 0.38);
-$borders: rgba(0, 0, 0, 0.12);
-$unfocused_borders: rgba(0, 0, 0, 0.12);
-$warning_color: #FFD600;
-$error_color: #E53935;
-$success_color: #0F9D58;
-$wm_title: rgba(0, 0, 0, 0.87);
-$wm_unfocused_title: rgba(0, 0, 0, 0.6);
-$wm_highlight: rgba(255, 255, 255, 0.4);
-$wm_bg: #FFFFFF;
-$wm_unfocused_bg: #FAFAFA;
-$content_view_bg: #FFFFFF;
-$placeholder_text_color: #666666;
-$text_view_bg: #FFFFFF;
-$budgie_tasklist_indicator_color: rgba(0, 0, 0, 0.6);
-$budgie_tasklist_indicator_color_active: #AB47BC;
-$budgie_tasklist_indicator_color_active_window: rgba(197, 134, 208, 0.8075);
-$budgie_tasklist_indicator_color_attention: #FFD600;
+// GTK NAMED COLORS -- USE RESPONSIBLY!
+
+// widget text/foreground color
+$theme_fg_color: #eeffff;
+// text color for entries, views and content in general
+$theme_text_color: #eeffff;
+// widget base background color
+$theme_bg_color: #0f111a;
+// text widgets and the like base background color
+$theme_base_color: #0f111a;
+// base background color of selections
+$theme_selected_bg_color: #e2e9e9;
+// text/foreground color of selections
+$theme_selected_fg_color: rgba(0, 0, 0, 0.87);
+// base background color of insensitive widgets
+$insensitive_bg_color: #0f111a;
+// text foreground color of insensitive widgets
+$insensitive_fg_color: rgba(238, 245, 245, 0.5);
+// insensitive text widgets and the like base background color
+$insensitive_base_color: #232637;
+// widget text/foreground color on backdrop windows
+$theme_unfocused_fg_color: #eeffff;
+// text color for entries, views and content in general on backdrop windows
+$theme_unfocused_text_color: #eeffff;
+// widget base background color on backdrop windows
+$theme_unfocused_bg_color: #0f111a;
+// text widgets and the like base background color on backdrop windows
+$theme_unfocused_base_color: #0f111a;
+// base background color of selections on backdrop windows
+$theme_unfocused_selected_bg_color: #e2e9e9;
+// text/foreground color of selections on backdrop windows
+$theme_unfocused_selected_fg_color: rgba(0, 0, 0, 0.87);
+// insensitive color on backdrop windows
+$unfocused_insensitive_color: rgba(238, 245, 245, 0.5);
+// widgets main borders color
+$borders: rgba(238, 245, 245, 0.12);
+// widgets main borders color on backdrop windows
+$unfocused_borders: rgba(238, 245, 245, 0.12);
+// these are pretty self-explanatory
+$warning_color: #FDD633;
+$error_color: #F28B82;
+$success_color: #81C995;
+// these colors are exported for the window manager and shouldn't be used in applications,
+// read if you used those and something break with a version upgrade you're on your own...
+$wm_title: #eeffff;
+$wm_unfocused_title: rgba(238, 245, 245, 0.7);
+$wm_highlight: rgba(238, 245, 245, 0.1);
+$wm_bg: #0f111a;
+$wm_unfocused_bg: #0f111a;
+$wm_button_close_icon: #0f111a;
+$wm_button_close_hover_bg: #e2e9e9;
+$wm_button_close_active_bg: #c7c7c7;
+// FIXME this is really an API
+$content_view_bg: #0f111a;
+$placeholder_text_color: silver;
+// Very contrasty background for text views ($theme_text_color foreground)
+$text_view_bg: #1d1d1d;
+$budgie_tasklist_indicator_color: #eeffff;
+$budgie_tasklist_indicator_color_active: #eeffff;
+$budgie_tasklist_indicator_color_active_window: #999999;
+$budgie_tasklist_indicator_color_attention: #FDD633;
 $STRAWBERRY_100: #FF9262;
 $STRAWBERRY_300: #FF793E;
 $STRAWBERRY_500: #F15D22;
@@ -81,3 +109,41 @@ $BLACK_300: #403C3A;
 $BLACK_500: #393634;
 $BLACK_700: #33302F;
 $BLACK_900: #2B2928;
+
+// GTK LIBADWAITA NAMED COLORS -- USE RESPONSIBLY!
+$accent_bg_color: #e2e9e9;
+$accent_fg_color: rgba(0, 0, 0, 0.87);
+$accent_color: #e2e9e9;
+$destructive_bg_color: #F28B82;
+$destructive_fg_color: rgba(0, 0, 0, 0.87);
+$destructive_color: #F28B82;
+$success_bg_color: #81C995;
+$success_fg_color: rgba(0, 0, 0, 0.87);
+$success_color: #81C995;
+$warning_bg_color: #FDD633;
+$warning_fg_color: rgba(0, 0, 0, 0.87);
+$warning_color: #FDD633;
+$error_bg_color: #F28B82;
+$error_fg_color: rgba(0, 0, 0, 0.87);
+$error_color: #F28B82;
+$window_bg_color: #0f111a;
+$window_fg_color: #eeffff;
+$view_bg_color: #0f111a;
+$view_fg_color: #eeffff;
+$headerbar_bg_color: #0f111a;
+$headerbar_fg_color: #eeffff;
+$headerbar_border_color: rgba(238, 245, 245, 0.12);
+$headerbar_backdrop_color: $window_bg_color;
+$headerbar_shade_color: rgba(0, 0, 0, 0.36);
+$card_bg_color: #0f111a;
+$card_fg_color: #eeffff;
+$card_shade_color: rgba(0, 0, 0, 0.36);
+$dialog_bg_color: #0f111a;
+$dialog_fg_color: #eeffff;
+$popover_bg_color: #0f111a;
+$popover_fg_color: #eeffff;
+$thumbnail_bg_color: #0f111a;
+$thumbnail_fg_color: #eeffff;
+$shade_color: rgba(0, 0, 0, 0.36);
+$scrollbar_outline_color: rgba(0, 0, 0, 0.5);
+
