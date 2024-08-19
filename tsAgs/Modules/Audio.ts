@@ -154,9 +154,5 @@ export const indFn = (type: string = "speaker") => {
         .hook(audio, () => {
             self.tooltip_text = `${type} Volume = ${Math.ceil(getVol(type))}`            
         }),
-        on_primary_click: () => {
-            closeWin(`${type}Window`)
-            App.toggleWindow(`${type}Window`)
-        }
     })    
 }

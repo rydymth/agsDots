@@ -5,7 +5,7 @@ import { size } from "tsAgs/main";
 
 const winName = "bluetooth"
 
-const bluetoothToggleButton = Widget.Box({
+const bluetoothToggleButton = () => Widget.Box({
     class_name: "bluetoothToggleBox",
     hexpand: true,
     spacing: 10,
@@ -78,7 +78,7 @@ export const btChild = () => Widget.Box({
         class_name: winName.concat("Box"),
         vertical: true,
         children: [
-            bluetoothToggleButton,
+            bluetoothToggleButton(),
             Widget.Separator(),
             Widget.Box({
                 class_name: "btDevicesBox",

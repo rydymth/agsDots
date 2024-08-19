@@ -1,149 +1,51 @@
-// GTK NAMED COLORS -- USE RESPONSIBLY!
-
-// widget text/foreground color
-$theme_fg_color: #eeffff;
-// text color for entries, views and content in general
-$theme_text_color: #eeffff;
-// widget base background color
-$theme_bg_color: #0f111a;
-// text widgets and the like base background color
-$theme_base_color: #0f111a;
-// base background color of selections
-$theme_selected_bg_color: #e2e9e9;
-// text/foreground color of selections
-$theme_selected_fg_color: rgba(0, 0, 0, 0.87);
-// base background color of insensitive widgets
-$insensitive_bg_color: #0f111a;
-// text foreground color of insensitive widgets
-$insensitive_fg_color: rgba(238, 245, 245, 0.5);
-// insensitive text widgets and the like base background color
-$insensitive_base_color: #232637;
-// widget text/foreground color on backdrop windows
-$theme_unfocused_fg_color: #eeffff;
-// text color for entries, views and content in general on backdrop windows
-$theme_unfocused_text_color: #eeffff;
-// widget base background color on backdrop windows
-$theme_unfocused_bg_color: #0f111a;
-// text widgets and the like base background color on backdrop windows
-$theme_unfocused_base_color: #0f111a;
-// base background color of selections on backdrop windows
-$theme_unfocused_selected_bg_color: #e2e9e9;
-// text/foreground color of selections on backdrop windows
-$theme_unfocused_selected_fg_color: rgba(0, 0, 0, 0.87);
-// insensitive color on backdrop windows
-$unfocused_insensitive_color: rgba(238, 245, 245, 0.5);
-// widgets main borders color
-$borders: rgba(238, 245, 245, 0.12);
-// widgets main borders color on backdrop windows
-$unfocused_borders: rgba(238, 245, 245, 0.12);
-// these are pretty self-explanatory
-$warning_color: #FDD633;
-$error_color: #F28B82;
-$success_color: #81C995;
-// these colors are exported for the window manager and shouldn't be used in applications,
-// read if you used those and something break with a version upgrade you're on your own...
-$wm_title: #eeffff;
-$wm_unfocused_title: rgba(238, 245, 245, 0.7);
-$wm_highlight: rgba(238, 245, 245, 0.1);
-$wm_bg: #0f111a;
-$wm_unfocused_bg: #0f111a;
-$wm_button_close_icon: #0f111a;
-$wm_button_close_hover_bg: #e2e9e9;
-$wm_button_close_active_bg: #c7c7c7;
-// FIXME this is really an API
-$content_view_bg: #0f111a;
-$placeholder_text_color: silver;
-// Very contrasty background for text views ($theme_text_color foreground)
-$text_view_bg: #1d1d1d;
-$budgie_tasklist_indicator_color: #eeffff;
-$budgie_tasklist_indicator_color_active: #eeffff;
-$budgie_tasklist_indicator_color_active_window: #999999;
-$budgie_tasklist_indicator_color_attention: #FDD633;
-$STRAWBERRY_100: #FF9262;
-$STRAWBERRY_300: #FF793E;
-$STRAWBERRY_500: #F15D22;
-$STRAWBERRY_700: #CF3B00;
-$STRAWBERRY_900: #AC1800;
-$ORANGE_100: #FFDB91;
-$ORANGE_300: #FFCA40;
-$ORANGE_500: #FAA41A;
-$ORANGE_700: #DE8800;
-$ORANGE_900: #C26C00;
-$BANANA_100: #FFFFA8;
-$BANANA_300: #FFFA7D;
-$BANANA_500: #FFCE51;
-$BANANA_700: #D1A023;
-$BANANA_900: #A27100;
-$LIME_100: #A2F3BE;
-$LIME_300: #8ADBA6;
-$LIME_500: #73C48F;
-$LIME_700: #479863;
-$LIME_900: #1C6D38;
-$BLUEBERRY_100: #94A6FF;
-$BLUEBERRY_300: #6A7CE0;
-$BLUEBERRY_500: #3F51B5;
-$BLUEBERRY_700: #213397;
-$BLUEBERRY_900: #031579;
-$GRAPE_100: #D25DE6;
-$GRAPE_300: #B84ACB;
-$GRAPE_500: #9C27B0;
-$GRAPE_700: #830E97;
-$GRAPE_900: #6A007E;
-$COCOA_100: #9F9792;
-$COCOA_300: #7B736E;
-$COCOA_500: #574F4A;
-$COCOA_700: #463E39;
-$COCOA_900: #342C27;
-$SILVER_100: #EEE;
-$SILVER_300: #CCC;
-$SILVER_500: #AAA;
-$SILVER_700: #888;
-$SILVER_900: #666;
-$SLATE_100: #888;
-$SLATE_300: #666;
-$SLATE_500: #444;
-$SLATE_700: #222;
-$SLATE_900: #111;
-$BLACK_100: #474341;
-$BLACK_300: #403C3A;
-$BLACK_500: #393634;
-$BLACK_700: #33302F;
-$BLACK_900: #2B2928;
-
-// GTK LIBADWAITA NAMED COLORS -- USE RESPONSIBLY!
-$accent_bg_color: #e2e9e9;
-$accent_fg_color: rgba(0, 0, 0, 0.87);
-$accent_color: #e2e9e9;
-$destructive_bg_color: #F28B82;
-$destructive_fg_color: rgba(0, 0, 0, 0.87);
-$destructive_color: #F28B82;
-$success_bg_color: #81C995;
-$success_fg_color: rgba(0, 0, 0, 0.87);
-$success_color: #81C995;
-$warning_bg_color: #FDD633;
-$warning_fg_color: rgba(0, 0, 0, 0.87);
-$warning_color: #FDD633;
-$error_bg_color: #F28B82;
-$error_fg_color: rgba(0, 0, 0, 0.87);
-$error_color: #F28B82;
-$window_bg_color: #0f111a;
-$window_fg_color: #eeffff;
-$view_bg_color: #0f111a;
-$view_fg_color: #eeffff;
-$headerbar_bg_color: #0f111a;
-$headerbar_fg_color: #eeffff;
-$headerbar_border_color: rgba(238, 245, 245, 0.12);
-$headerbar_backdrop_color: $window_bg_color;
-$headerbar_shade_color: rgba(0, 0, 0, 0.36);
-$card_bg_color: #0f111a;
-$card_fg_color: #eeffff;
-$card_shade_color: rgba(0, 0, 0, 0.36);
-$dialog_bg_color: #0f111a;
-$dialog_fg_color: #eeffff;
-$popover_bg_color: #0f111a;
-$popover_fg_color: #eeffff;
-$thumbnail_bg_color: #0f111a;
-$thumbnail_fg_color: #eeffff;
-$shade_color: rgba(0, 0, 0, 0.36);
-$scrollbar_outline_color: rgba(0, 0, 0, 0.5);
+$theme_fg_color: #dedede;
+$theme_text_color: #dedede;
+$theme_bg_color: #333333;
+$theme_base_color: #242424;
+$theme_selected_bg_color: #498dff;
+$theme_selected_fg_color: #ffffff;
+$fg_color: #dedede;
+$text_color: #dedede;
+$bg_color: #333333;
+$base_color: #242424;
+$selected_bg_color: #498dff;
+$selected_fg_color: #ffffff;
+$insensitive_bg_color: #383838;
+$insensitive_fg_color: rgba(rgba(222, 222, 222, 0.45), 0.5);
+$insensitive_base_color: #242424;
+$theme_unfocused_fg_color: #dedede;
+$theme_unfocused_text_color: #dedede;
+$theme_unfocused_bg_color: #333333;
+$theme_unfocused_base_color: #242424;
+$borders: rgba(255, 255, 255, 0.12);
+$unfocused_borders: rgba(255, 255, 255, 0.12);
+$warning_color: #F27835;
+$error_color: #FC4138;
+$success_color: #71c837;
+$placeholder_text_color: #A8A8A8;
+$link_color: #3484e2;
+$content_view_bg: #242424;
+$wm_title: rgba(#e1dbdb, 0.8);
+$wm_unfocused_title: rgba(#e1dbdb, 0.5);
+$wm_bg: #373737;
+$wm_bg_unfocused: #404040;
+$wm_highlight: #3f3f3f;
+$wm_shadow: rgba(black, 0.35);
+$wm_button_close_bg: #cc575d;
+$wm_button_close_hover_bg: #d7787d;
+$wm_button_close_active_bg: #be3841;
+$wm_icon_close_bg: #2f343f;
+$wm_button_hover_bg: #454C5C;
+$wm_button_active_bg: #498dff;
+$wm_button_hover_border: #262932;
+$wm_icon_bg: #90939B;
+$wm_icon_unfocused_bg: #666A74;
+$wm_icon_hover_bg: #C4C7CC;
+$wm_icon_active_bg: #ffffff;
+$titlebar_gradient_a: whitesmoke;
+$titlebar_gradient_b: #e2e2e2;
+$budgie_tasklist_indicator_color: #498dff;
+$budgie_tasklist_indicator_color_active: #498dff;
+$budgie_tasklist_indicator_color_active_window: #3b5f9d;
+$budgie_tasklist_indicator_color_attention: #F27835;
 

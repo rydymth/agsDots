@@ -1,3 +1,5 @@
+import { Monitor } from "types/service/hyprland"
+
 const hyprland = await Service.import("hyprland")
 
 // Functions
@@ -15,10 +17,9 @@ const wspEB = (w: {id: number, on: boolean}) => Widget.EventBox({
   setup: self => self.toggleClassName("Active", hyprland.active.workspace.id === w.id)
 })
 
-const wsp = (mon: number) => mon === 0 ? [1, 2, 3, 4, 5, 6] : [7, 8, 9, 10, 11, 12, 13, 14, 15]
+const wsp = (mon: number) => hyprland.workspaces.filter(w => w.monitorID === mon).sort((a, b) => a.id - b.id).map(w => w.id);
 
 const wspHandler = (wsp: number[]) => {
-
   let workspaces: {id: number, on: boolean}[] = wsp.map(wid => {
     let workspace = hyprland.getWorkspace(wid)
     if (!workspace)
@@ -36,10 +37,10 @@ const wspHandler = (wsp: number[]) => {
 }
 
 export default (mon: number) => {
-  let monHandle = hyprland.monitors.filter(m => m.id === mon).map(m => wsp(m.id))
   return Widget.Box({
     class_name: "wspBox",
     setup: self => self.hook(hyprland, () => {
+      let monHandle = hyprland.monitors.filter(m => m.id === mon).map(m => wsp(m.id))
       self.children = monHandle.map(m => wspHandler(m))
     })
   })

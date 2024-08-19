@@ -1,18 +1,9 @@
 const battery = await Service.import('battery')
-import Tooltips from "tsAgs/Functions/Tooltips"
 import closeWin from "tsAgs/Functions/closeWin"
 const pp = await Service.import("powerprofiles")
 const hypr = await Service.import("hyprland")
 
 globalThis.notifies = false
-
-const batteryTooltip = Tooltips(
-    {
-        name: "batteryTooltip",
-        class_name: "batteryTooltip",
-        anchor: ["top", "right"],
-    },
-)
 
 function batt() {
     let ret: string
@@ -109,7 +100,7 @@ export const powerProfile = () => {
         visible: false,
         class_name: "PPWindow",
         name: "PP",
-        anchor: ["top", "right"],
+        anchor: ["bottom", "right"],
         margins: [10, 10],
         child:AllTogether,
         keymode: "exclusive",

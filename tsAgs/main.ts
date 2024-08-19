@@ -1,20 +1,16 @@
 import { Batt, powerProfile } from "./Modules/Battery.ts"
 import { ClockWidget, clockWin } from "./Modules/Clock.ts"
 import Spotlight from "./Modules/Spotlight.ts"
-import Wifi, { wifiWindow } from "./Modules/Wifi.ts"
-import { btBarButton, btWindow } from "./Modules/Bluetooth"
-import { indFn, audioWin } from "./Modules/Audio"
 import { volOSD } from "./Functions/OSD"
 import { NotificationPopups } from "./Functions/Notifications"
-import { NCWindow, noitfCenter } from "./Modules/NotificationCenter"
 import SysTray from "./Modules/Systray"
 import { Media } from "./Modules/Media"
 import closeWin from "./Functions/closeWin"
 const hypr = await Service.import("hyprland");
-import Monitor, { backAll, dockAll } from "./Functions/Monitor"
+import Monitor, { backAll } from "./Functions/Monitor"
 import { wsps, runAppWin }  from "./Modules/Docs" 
-import { mainMenu, mainMenuWindow } from "./Modules/mainMenu" 
 import workspaces from "./Modules/workspaces"
+import { commonWindow, controlWindow, indIcons } from "./Modules/oneControl"
 export const size = 14;
 
 App.addIcons(`/home/rudy/.config/ags/assets`)
@@ -70,18 +66,14 @@ export const Bar = (mon: number) => {
         vpack: "fill",
         children: [
             SysTray(),
-            MediaGet(),
-            noitfCenter(),
-            indFn("speaker"),
-            indFn("microphone"),
-            btBarButton(),
-            Wifi(),
+            // MediaGet(),
+            indIcons(),
          ]            
     })
 
     const Right = Widget.Box({
         class_name: "RightBar",
-        spacing: 10,
+        spacing: 3,
         vpack: "center",
         hpack: "end",
         children: [
@@ -95,17 +87,10 @@ export const Bar = (mon: number) => {
             Widget.Box({
                 className: "RightStartBar",
                 hpack: "start",
-                children: [ Batt() ]
-            }),
-
-            Widget.Box({
-                className: "RightEndBar",
-                hpack: "end",
-                spacing: 7,
-                children: [ 
+                children: [ Batt(),
                     ClockWidget()
-                 ]
-            })
+                ]
+            }),
         ]
     })
 
@@ -119,7 +104,7 @@ export const Bar = (mon: number) => {
             hpack: "center",
             spacing: 10,
             children: [ 
-                // checkBox("Do laundry")
+                wsps(mon)
             ]
         }),
         end_widget: Right
@@ -132,7 +117,7 @@ export const Bar = (mon: number) => {
         name: `bar-${mon}`,
         margins: [0, 0],
         exclusivity: "exclusive",
-        anchor: ["left", "top", "right"],
+        anchor: ["left", "bottom", "right"],
         layer: "top",
         child: BarContents,
 //        setup: self => self.hook(hypr, () => {
@@ -163,53 +148,18 @@ export const back = (mon: number) => Widget.Window({
     })
 })    
 
-export const Dock = (mon: number) => Widget.Window({
-    visible: true,
-    monitor: mon,
-    name: `Dock-${mon}`,
-    class_name: `Dock-${mon}`,
-    exclusivity: "exclusive",
-    anchor: ["bottom"],
-    layer: "top",
-    child: wsps(mon),
-    setup: self => self
-    // .hook(hypr, () => {
-    //     let ws = hypr.getWorkspace(hypr.active.workspace.id)
-    //     if (ws && !globalThis.changed)
-    //     {                
-    //         if (ws.windows === 0)
-    //             self.visible = true
-    //         else
-    //             self.visible = false
-    //     }
-    // })
-    // .hook(hypr, (_, name: string, data: string) => {
-    //     if (name === "movewindowv2" || "openwindow" || "closewindow")
-    //     {
-    //         Utils.timeout(100, () => self.visible = true)
-    //         Utils.timeout(2000, () => self.visible = false)
-            
-    //     }
-    // }, "event")
-})
-
 try {
 
     App.config({
         windows: [
             ...Monitor(),
             ...backAll(),
-            ...dockAll(),
-            mainMenuWindow,
             runAppWin,
+            commonWindow,
+            controlWindow,
             Spotlight(),
-            wifiWindow(),
-            btWindow(),
-            audioWin("speaker"),
-            audioWin("microphone"),
             volOSD,
             NotificationPopups(),
-            NCWindow,
             mediaWin,
             clockWin,
             powerProfile(),

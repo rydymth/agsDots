@@ -2,14 +2,14 @@
 
 .DockBox {
   border-radius: 0.5em;
-  background-color: rgba($insensitive_bg_color, 0.2);
-  padding: 0.3em 0.5em;
-  margin: 0em 0.5em 0.7em 0.5em;
+  // background-color: rgba($insensitive_bg_color, 0.6);
+  padding: 0em 0.5em;
+  margin: 0em;
   color: $insensitive_fg_color;
 }
 
 .DockClassIcon {
-  padding: 0.3em
+  padding: 0em 0.25em 0 0.25em;
 }
 
 .DockClassItemEB {
@@ -33,4 +33,21 @@
 .pinnedAppIcon {
   padding: 0.3em;
   -gtk-icon-effect: dim
+}
+
+.instanceWindow {
+    background-color: rgba($theme_bg_color, 0.7);
+    border-radius: 0.5em;
+}
+
+.InstanceBox {
+    padding: 0.5em;
+}
+
+.DockItem {
+    &:hover {
+	.DockAppLabel{
+	    color: $theme_fg_color;
+	}
+    }
 }

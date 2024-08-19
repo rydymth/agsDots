@@ -11,7 +11,7 @@ const year = Variable("", {
 export const clockWin = Widget.Window({
     visible: false,
     class_name: "clockCalendar",
-    anchor: ["top", "right"],
+    anchor: ["bottom", "right"],
     name: "clockWin",
     child: Widget.Calendar(),
     keymode: "exclusive",

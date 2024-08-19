@@ -4,7 +4,7 @@ import { size } from "tsAgs/main";
 
 const wifiWin = "wifi";
 
-const wifiSelectionMenu = Widget.Box({
+const wifiSelectionMenu = () => Widget.Box({
     class_name: "wifiSelectionMenu",
     vertical: true,
     spacing: 5,
@@ -74,7 +74,7 @@ export const wifiBoxConetents = () => Widget.Box({
                 })
            ]
         }),
-        wifiSelectionMenu
+        wifiSelectionMenu()
     ]
 })
 
