@@ -11,7 +11,7 @@ import Monitor, { backAll } from "./Functions/Monitor"
 import { wsps, runAppWin }  from "./Modules/Docs" 
 import workspaces from "./Modules/workspaces"
 import { commonWindow, controlWindow, indIcons } from "./Modules/oneControl"
-export const size = 14;
+export const size = 12;
 
 App.addIcons(`/home/rudy/.config/ags/assets`)
 

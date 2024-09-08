@@ -20,16 +20,18 @@ class runApps {
 }
 
 const pinnedApps = [
-  "Zed",
-  "google-chrome",
-  "org.gnome.Nautilus",
-  "org.gnome.Evince",
-  "org.gnome.SystemMonitor"
+  "firefox",
+  "nwg-look",
+  "atril",
+  "com.github.Lyude.neovim-gtk",
+  "org.gnome.Todo",
+  "thunar.desktop",
+  "spotify-launcher",
 ];
 
 function findPinnedApps(deskName: String[]) {
   let retArr: Application[] = [];
-  retArr.push(applications.query("wezterm")[0]);
+  retArr.push(applications.query("blackbox")[0]);
   for (let i of deskName) {
     applications.list.map((app) => {
       if (app.desktop.includes(i)) retArr.push(app);
@@ -64,7 +66,7 @@ const btrButton = (iconName: string, className: string, exec: string[]) =>
     child: Widget.Icon({
       class_name: `${className}Icon`,
       icon: iconName,
-      size: size + 10,
+      size: size + 7,
     }),
     on_primary_click: () => Utils.execAsync(exec),
   });
@@ -86,13 +88,8 @@ const RunningAppInd = (address: string) => {
         Widget.Icon({
           class_name: "DockAppIcon",
           icon: app?.icon_name || "application-x-executable",
-          size: size + 10,
-          setup: (self) =>
-	  {
-		if(app.name.includes("Zed"))
-		 self.size = 12
-	  }
-      }),
+          size: size + 7,
+        }),
         Widget.Label({
           class_name: "DockAppLabel",
           justification: "right",
@@ -145,11 +142,7 @@ export function wsps(mon: number) {
       child: Widget.Icon({
         class_name: `DockClassIcon ${name[0]}`,
         icon: appName?.icon_name || "application-x-executable",
-        size: size + 10,
-        setup: (self) => {
-	    if (appName.name.includes("Zed"))
-		self.size = 12;
-	}
+        size: size + 7,
       }),
       on_primary_click: () => {
         closeWin();
@@ -199,42 +192,46 @@ export function wsps(mon: number) {
           }),
         setup: (self) =>
           self
-	  .hook(
-            hypr,
-            () => {
-              runningApp = [];
-              clientsClass(mon).map((c: string[]) => {
-                let appClass = c[0];
-                let appTitle = c[1];
-                // if any of our running app's name is already present in the pinned apps then just ignore/skip the running app
-                pinApp.map((app) => {
-	          if (app.desktop.toLowerCase().includes(appClass.toLowerCase())) {
-                    runningApp.push(new runApps(app, c[0], c[1]));
-                  }
+            .hook(
+              hypr,
+              () => {
+                runningApp = [];
+                clientsClass(mon).map((c: string[]) => {
+                  let appClass = c[0];
+                  let appTitle = c[1];
+                  // if any of our running app's name is already present in the pinned apps then just ignore/skip the running app
+                  pinApp.map((app) => {
+                    if (
+                      app.desktop.toLowerCase().includes(appClass.toLowerCase())
+                    ) {
+                      runningApp.push(new runApps(app, c[0], c[1]));
+                    }
+                  });
+                  runningApp = [...new Set(runningApp)];
                 });
-                runningApp = [...new Set(runningApp)];
-              });
-            },
-            "client-removed",
-          )
-	  .hook(
-            hypr,
-            () => {
-              runningApp = [];
-              clientsClass(mon).map((c: string[]) => {
-                let appClass = c[0];
-                let appTitle = c[1];
-                // if any of our running app's name is already present in the pinned apps then just ignore/skip the running app
-                pinApp.map((app) => {
-	          if (app.desktop.toLowerCase().includes(appClass.toLowerCase())) {
-                    runningApp.push(new runApps(app, c[0], c[1]));
-                  }
+              },
+              "client-removed",
+            )
+            .hook(
+              hypr,
+              () => {
+                runningApp = [];
+                clientsClass(mon).map((c: string[]) => {
+                  let appClass = c[0];
+                  let appTitle = c[1];
+                  // if any of our running app's name is already present in the pinned apps then just ignore/skip the running app
+                  pinApp.map((app) => {
+                    if (
+                      app.desktop.toLowerCase().includes(appClass.toLowerCase())
+                    ) {
+                      runningApp.push(new runApps(app, c[0], c[1]));
+                    }
+                  });
+                  runningApp = [...new Set(runningApp)];
                 });
-                runningApp = [...new Set(runningApp)];
-              });
-            },
-            "client-added",
-          ),
+              },
+              "client-added",
+            ),
       }),
     });
 
@@ -251,11 +248,7 @@ export function wsps(mon: number) {
       child: Widget.Icon({
         class_name: `pinnedAppIcon ${app.name}`,
         icon: app.icon_name || "application-x-executable",
-        size: size + 10,
-	setup: self => {
-	    if (app.name.includes("Zed"))
-		self.size = 12;
-	}
+        size: size + 7,
       }),
       on_primary_click: () => {
         app.launch();

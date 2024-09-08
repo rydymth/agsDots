@@ -428,10 +428,15 @@ export const NotificationPopups = () => {
       notifs.popups.map((n) => {
         if (
           n.app_name.includes("com.github.Aylur.ags.rudy") ||
-          n.app_name.includes("notify-send")
+          n.app_name.includes("notify-send") ||
+          n.app_name.includes("Spotify") ||
+          n.app_name.includes("udiskie")
         ) {
           self.anchor = ["top"];
-          Utils.timeout(7000, () => n.close());
+          Utils.timeout(7000, () => {
+            n.close();
+            self.anchor = ["top", "right"];
+          });
         }
       });
     },

@@ -50,7 +50,7 @@ const notifGroup = () => {
                             vexpand: true,
                             children: [
                                 Widget.Label({
-                                    hpack: "start",
+                                    hpack: "center",
                                     hexpand: true,
                                     label: n[0]
                                 }),

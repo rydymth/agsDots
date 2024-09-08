@@ -29,7 +29,7 @@ function notifs() {
     child: Widget.Box(
       { class_name: "ncBox", spacing: 3 },
       Widget.Overlay({
-        child: Widget.Label({ label: `󰂚   ` }),
+        child: Widget.Label({ label: `󰂚  ` }),
         overlays: [
           Widget.Label({
             css: "font-size: 0.7rem",
@@ -74,10 +74,11 @@ const uptime = Variable("", {
 });
 
 const uptimeLabel = () =>
-  Widget.EventBox({
+  Widget.Box({
+    class_name: "uptimeBox",
     child: Widget.Label({
       hexpand: true,
-      justification: "left",
+      justification: "center",
       class_name: "SysInfoElements uptime",
       label: uptime.bind().as((up) => `Uptime is: ${up}`),
     }),
@@ -86,6 +87,8 @@ const uptimeLabel = () =>
 const sysInd = (widget: Gtk.Widget, action: Gtk.Widget) =>
   Widget.Box({
     class_name: "sysIndButtonContainer",
+    hexpand:  true,
+    vexpand: true,
     child: Widget.Button({
       class_name: "sysIndButton",
       child: widget,
@@ -111,42 +114,53 @@ const windowItems = () =>
     }),
 
     center_widget: Widget.Box({
-      hexpand: true,
-      vexpand: true,
       class_name: "NotificationCenter",
       vertical: true,
       children: [
         Widget.Box(
           {
             class_name: "notifHandler",
-            spacing: 50,
-          },
-          Widget.Box(
+            hexpand: true,
+            vpack: "start",
+            children: [
+            Widget.Box(
             {
               hpack: "start",
+              hexpand: true,
+              vpack: "end",
               class_name: "notifHandleIcon",
+              child: dnd()
             },
-            dnd(),
-          ),
-          Widget.Box(
+            ),
+            Widget.Box(
             {
               hpack: "end",
+              hexpand: true,
+              vpack: "end",
               class_name: "notifHandleIcon",
+              child: clear(),
             },
-            clear(),
-          ),
+            ),
+            ]
+          },
         ),
-        scrollable(),
+        Widget.Box(
+        {
+            hexpand: true,
+        },
+        scrollable()
+        )
+
       ],
     }),
     end_widget: Widget.Box({
       class_name: "SysIndicators",
-      spacing: 50,
+      spacing: 10,
       children: [
-        sysInd(WifiIndicator(), wifiBoxConetents()),
-        sysInd(bluetoothInd(), btChild()),
-        sysInd(indFn("speaker"), audioWinContents("speaker")),
-        sysInd(indFn("microphone"), audioWinContents("microphone")),
+        Widget.Box({hpack:"start", vpack: "end"},sysInd(WifiIndicator(), wifiBoxConetents())),
+        Widget.Box({hpack:"center", vpack: "end"},sysInd(bluetoothInd(), btChild())),
+        Widget.Box({hpack:"center", vpack: "end"},sysInd(indFn("speaker"), audioWinContents("speaker"))),
+        Widget.Box({hpack:"end", vpack: "end"},sysInd(indFn("microphone"), audioWinContents("microphone"))),
       ],
     }),
   });
