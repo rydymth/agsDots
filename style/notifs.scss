@@ -2,7 +2,7 @@
 @import "./colors";
 
 .notifActionEB {
-    background-color: rgba($theme-bg-color, 0.7);
+    background-color: rgba($theme-bg-color, 1);
     padding: 5px;
     margin: 5px;
 
@@ -40,7 +40,7 @@
         min-width: 370px;
         margin: 0.7em 1.5em;
         /* box-shadow: 0em 0em 0.2em 0 #161616; */
-        background-color: rgba($background-color, 7);
+        background-color: rgba($background-color, 1);
         border-radius: 7px;
         padding: 15px;
 

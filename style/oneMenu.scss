@@ -2,7 +2,7 @@
 
 .allInOneCenterBox {
     padding: 1.5em;
-    background-color: rgba($theme_bg_color, 0.7);
+    background-color: rgba($theme_bg_color, 1);
     border-radius: 1.2em;
 }
 
@@ -29,7 +29,7 @@
 }
 
 .indIcons {
-    color: $theme_fg_color;
+    color: $accent-fg-color;
     // background-color: rgba($theme_bg_color, 0.6);
     border-radius: 0.5em;
     padding: 0 0.25em 0 0.25em;
@@ -37,7 +37,7 @@
 }
 
 .uptimeBox {
-    color: $theme_selected_bg_color;
+    color: $theme_fg_color;
     background-color: $theme_bg_color;
     padding: 0.5em;
     border-radius: 0.5em;

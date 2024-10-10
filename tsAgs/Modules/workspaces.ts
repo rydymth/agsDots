@@ -17,7 +17,7 @@ const wspEB = (w: {id: number, on: boolean}) => Widget.EventBox({
   setup: self => self.toggleClassName("Active", hyprland.active.workspace.id === w.id)
 })
 
-const wsp = (mon: number) => hyprland.workspaces.filter(w => w.monitorID === mon).sort((a, b) => a.id - b.id).map(w => w.id);
+const wsp = (mon: number) => hyprland.workspaces.filter(w => w.monitorID === mon).filter(w => w.id >= 0).sort((a, b) => a.id - b.id).map(w => w.id);
 
 const wspHandler = (wsp: number[]) => {
   let workspaces: {id: number, on: boolean}[] = wsp.map(wid => {

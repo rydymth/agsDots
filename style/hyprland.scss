@@ -1,38 +1,53 @@
 @import "./colors";
 
 .DockBox {
-  border-radius: 0.5em;
-  // background-color: rgba($insensitive_bg_color, 0.6);
-  padding: 0em 0.5em;
-  margin: 0em;
-  color: $insensitive_fg_color;
+    border-radius: 0.5em;
+    // background-color: rgba($insensitive_bg_color, 0.6);
+    padding: 0em 0.5em;
+    margin: 0em;
+    color: $insensitive_fg_color;
 }
 
 .DockClassIcon {
-  padding: 0em 0.25em 0 0.25em;
+    padding: 0em 0.25em 0 0.25em;
 }
 
 .DockClassItemEB {
-  &:hover {
-    .DockClassIcon {
-      -gtk-icon-transform: translateY(-0.3em);
+    &:hover {
+        .DockClassIcon {
+            border-radius: 5em;
+            background-color: rgba($theme-bg-color, 0.7);
+        }
     }
-  }
+}
+
+.activeIcon {
+    background-color: $theme_fg_color;
+    border-radius: 5em;
+    padding: 0;
+    margin: 0.5em 0 0 0;
+    font-size: 0.5em;
+    min-height: 0.3em;
+    min-width: 0.3em;
 }
 
 .activeAppClass {
-  .DockClassIcon {
-    border-radius: 0.5em;
-    padding: 0 0.3em;
-    /* background-color: rgba($theme_selected_bg_color, 0.3); */
-    -gtk-icon-transform: rotate(15deg);
-    -gtk-icon-effect: highlight;
-  }
+    .DockClassIcon {
+        border-radius: 0.5em;
+        padding: 0 0.3em;
+        /* background-color: rgba($theme_selected_bg_color, 0.3); */
+    }
+
+    .activeIcon {
+        background-color: $theme_fg_color;
+        border-radius: 7em;
+        min-height: 0.3em;
+        min-width: 2.5em;
+    }
 }
 
 .pinnedAppIcon {
-  padding: 0.3em;
-  -gtk-icon-effect: dim
+    padding: 0.3em;
 }
 
 .instanceWindow {
@@ -46,8 +61,8 @@
 
 .DockItem {
     &:hover {
-	.DockAppLabel{
-	    color: $theme_fg_color;
-	}
+        .DockAppLabel {
+            color: $theme_fg_color;
+        }
     }
 }

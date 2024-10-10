@@ -1,103 +1,104 @@
-$theme_fg_color: #e6ebef;
-$theme_text_color: currentColor;
-$theme_bg_color: #32343D;
-$theme_base_color: #282A33;
-$theme_selected_bg_color: #5294e2;
-$theme_selected_fg_color: #ffffff;
-$fg_color: #e6ebef;
-$text_color: currentColor;
-$bg_color: #32343D;
-$base_color: #282A33;
-$selected_bg_color: #5294e2;
-$selected_fg_color: #ffffff;
-$insensitive_bg_color: #373943;
-$insensitive_fg_color: rgba(230, 235, 239, 0.45);
-$insensitive_base_color: #282A33;
-$theme_unfocused_fg_color: #e6ebef;
-$theme_unfocused_text_color: currentColor;
-$theme_unfocused_bg_color: #32343D;
-$theme_unfocused_base_color: #282A33;
-$theme_unfocused_selected_bg_color: #5294e2;
-$theme_unfocused_selected_fg_color: #ffffff;
-$unfocused_insensitive_color: rgba(230, 235, 239, 0.45);
-$borders: rgba(255, 255, 255, 0.12);
-$unfocused_borders: rgba(255, 255, 255, 0.12);
-$warning_color: #F27835;
-$error_color: #FC4138;
-$success_color: #6dcfa7;
-$placeholder_text_color: #A8A8A8;
-$link_color: #a9caf1;
-$content_view_bg: #282A33;
-$text_view_bg: #1b1c22;
-$wm_title: rgba(#e0e5eb, 0.8);
-$wm_unfocused_title: rgba(#e0e5eb, 0.5);
-$wm_bg: #282a33;
-$wm_bg_unfocused: #2b2e37;
-$wm_highlight: #333641;
-$wm_shadow: rgba(black, 0.35);
-$wm_border: #121216;
-$wm_button_close_bg: #cc575d;
-$wm_button_close_hover_bg: #d7787d;
-$wm_button_close_active_bg: #ae4a4f;
-$wm_icon_close_bg: #2f343f;
-$wm_button_hover_bg: #454C5C;
-$wm_button_active_bg: #5294e2;
-$wm_button_hover_border: #262932;
-$wm_icon_bg: #90939B;
-$wm_icon_unfocused_bg: #666A74;
-$wm_icon_hover_bg: #C4C7CC;
-$wm_icon_active_bg: #ffffff;
-$budgie_tasklist_indicator_color: #5294e2;
-$budgie_tasklist_indicator_color_active: #5294e2;
-$budgie_tasklist_indicator_color_active_window: #3b608e;
-$budgie_tasklist_indicator_color_attention: #F27835;
-$STRAWBERRY_100: #FF9262;
-$STRAWBERRY_300: #FF793E;
-$STRAWBERRY_500: #F15D22;
-$STRAWBERRY_700: #CF3B00;
-$STRAWBERRY_900: #AC1800;
-$ORANGE_100: #FFDB91;
-$ORANGE_300: #FFCA40;
-$ORANGE_500: #FAA41A;
-$ORANGE_700: #DE8800;
-$ORANGE_900: #C26C00;
-$BANANA_100: #FFFFA8;
-$BANANA_300: #FFFA7D;
-$BANANA_500: #FFCE51;
-$BANANA_700: #D1A023;
-$BANANA_900: #A27100;
-$LIME_100: #A2F3BE;
-$LIME_300: #8ADBA6;
-$LIME_500: #73C48F;
-$LIME_700: #479863;
-$LIME_900: #1C6D38;
-$BLUEBERRY_100: #94A6FF;
-$BLUEBERRY_300: #6A7CE0;
-$BLUEBERRY_500: #3F51B5;
-$BLUEBERRY_700: #213397;
-$BLUEBERRY_900: #031579;
-$GRAPE_100: #D25DE6;
-$GRAPE_300: #B84ACB;
-$GRAPE_500: #9C27B0;
-$GRAPE_700: #830E97;
-$GRAPE_900: #6A007E;
-$COCOA_100: #9F9792;
-$COCOA_300: #7B736E;
-$COCOA_500: #574F4A;
-$COCOA_700: #463E39;
-$COCOA_900: #342C27;
-$SILVER_100: #EEE;
-$SILVER_300: #CCC;
-$SILVER_500: #AAA;
-$SILVER_700: #888;
-$SILVER_900: #666;
-$SLATE_100: #888;
-$SLATE_300: #666;
-$SLATE_500: #444;
-$SLATE_700: #222;
-$SLATE_900: #111;
-$BLACK_100: #474341;
-$BLACK_300: #403C3A;
-$BLACK_500: #393634;
-$BLACK_700: #33302F;
-$BLACK_900: #2B2928;
+$yaru_accent_bg_color: #E95420;
+$blue_1: #75d3f4;
+$blue_2: #47c4f1;
+$blue_3: #19B6EE;
+$blue_4: #007aa6;
+$blue_5: #335280;
+$green_1: #5AED70;
+$green_2: #47D35C;
+$green_3: #34B948;
+$green_4: #219E34;
+$green_5: #0e8420;
+$yellow_1: #FCCD87;
+$yellow_2: #FBC16A;
+$yellow_3: #FBB44C;
+$yellow_4: #FAA82F;
+$yellow_5: #F99B11;
+$orange_1: #F29879;
+$orange_2: #F08763;
+$orange_3: #ED764D;
+$orange_4: #EB6536;
+$orange_5: #E95420;
+$red_1: #EA485C;
+$red_2: #DE374C;
+$red_3: #D3273B;
+$red_4: #c7162b;
+$red_5: #a91224;
+$purple_1: #924D8B;
+$purple_2: #762572;
+$purple_3: #77216F;
+$purple_4: #5E2750;
+$purple_5: #2C001E;
+$brown_1: #E1B289;
+$brown_2: #C5976E;
+$brown_3: #AA7B53;
+$brown_4: #8E6038;
+$brown_5: #72441D;
+$light_1: #FFFFFF;
+$light_2: #F7F7F7;
+$light_3: #CCC;
+$light_4: #AEA79F;
+$light_5: #878787;
+$dark_1: #666666;
+$dark_2: #5D5D5D;
+$dark_3: #3D3D3D;
+$dark_4: #181818;
+$dark_5: #000000;
+/* GTK NAMED COLORS
+   ----------------
+   use responsibly! */
+$theme_bg_color: $yaru_accent_bg_color;
+$theme_fg_color: $light_1;
+$accent_bg_color: $yaru_accent_bg_color;
+$accent_fg_color: $light_1;
+$accent_color: $yaru_accent_bg_color;
+$theme_base_color: $yaru_accent_bg_color;
+$destructive_bg_color: $red_4;
+$destructive_fg_color: $light_1;
+$theme_unfocused_bg_color: $red_4;
+$theme_unfocused_fg_color: $light_1;
+$destructive_color: $red_4;
+$insensitive_bg_color: $red_4;
+$insensitive_fg_color: invert($red_4);
+$success_bg_color: $green_4;
+$success_fg_color: $light_1;
+$theme_selected_bg_color: $green_4;
+$theme_selected_fg_color: $light_1;
+$success_color: $green_4;
+$warning_bg_color: $yellow_5;
+$warning_fg_color: $light_1;
+$warning_color: $yellow_5;
+$error_bg_color: $red_4;
+$error_fg_color: $light_1;
+$error_color: $red_4;
+popover.menu check,
+popover.menu radio {
+  transition: none;
+}
+
+levelbar > trough > block.high, levelbar > trough > block:not(.empty) {
+  background-color: $success_color;
+}
+
+button.suggested-action {
+  color: $success_fg_color;
+}
+button.suggested-action:not(.flat),
+button.suggested-action:checked:not(.flat) {
+  background-color: $success_bg_color;
+}
+button.flat.suggested-action {
+  color: $success_color;
+}
+
+splitbutton.suggested-action > button, splitbutton.suggested-action > menubutton > button {
+  color: $success_fg_color;
+}
+splitbutton.suggested-action > button, splitbutton.suggested-action > button:checked, splitbutton.suggested-action > menubutton > button, splitbutton.suggested-action > menubutton > button:checked {
+  background-color: $success_bg_color;
+}
+
+button,
+link {
+  font-weight: normal;
+}

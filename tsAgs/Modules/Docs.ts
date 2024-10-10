@@ -20,18 +20,25 @@ class runApps {
 }
 
 const pinnedApps = [
+  "com.raggesilver.BlackBox",
   "firefox",
   "nwg-look",
-  "atril",
-  "com.github.Lyude.neovim-gtk",
   "org.gnome.Todo",
-  "thunar.desktop",
-  "spotify-launcher",
+  "org.gnome.Nautilus",
+  "Zed",
+  "google-chrome",
+  "libreoffice-math",
+  "libreoffice-draw",
+  "libreoffice-impress",
+  "libreoffice-writer",
+  "libreoffice-calc",
+  "org.gnome.TextEditor",
+  "com.obsproject.Studio",
 ];
 
 function findPinnedApps(deskName: String[]) {
   let retArr: Application[] = [];
-  retArr.push(applications.query("blackbox")[0]);
+  retArr.push(applications.query("kitty")[0]);
   for (let i of deskName) {
     applications.list.map((app) => {
       if (app.desktop.includes(i)) retArr.push(app);
@@ -135,20 +142,48 @@ export function wsps(mon: number) {
   const indRunAppInfo = (name: string[]) => {
     let findName = name[0] ? name[0] : name[1];
     let appName = getApp(findName);
-    if (name[0] === "code-url-handler") appName = getApp("code");
+    // if (name[0] === "code-url-handler") appName = getApp("code");
     if (name[0] === "") appName = getApp("spotify");
+    let client = hypr.clients.filter(
+      (c) => c.initialClass === name[0] || c.initialTitle === name[1],
+    );
+    let cliLen = client.length;
     return Widget.EventBox({
       class_name: "DockClassItemEB",
-      child: Widget.Icon({
-        class_name: `DockClassIcon ${name[0]}`,
-        icon: appName?.icon_name || "application-x-executable",
-        size: size + 7,
+      child: Widget.Box({
+        class_name: "dockClassBox",
+        vertical: true,
+        children: [
+          Widget.Icon({
+            class_name: `DockClassIcon ${name[0]}`,
+            icon: appName?.icon_name || "application-x-executable",
+            size: size + 7,
+          }),
+          Widget.Box({
+            class_name: "activeIcon",
+            vertical: true,
+            hpack: "center",
+            hexpand: true,
+            vpack: "center",
+            vexpand: true,
+            spacing: 5,
+            /*
+            child: Widget.Label({
+              class_name: "activeLabel",
+              justification: "center",
+              xalign: 0,
+              vpack: "center",
+              setup: (self) =>
+                self.hook(hypr, () => {
+                  if (hypr.active.client.class != name[0]) self.label = " ";
+                }),
+                })*/
+          }),
+        ],
       }),
-      on_primary_click: () => {
+      on_primary_click: (self) => {
+        if (self.class_name === "activeAppClass") return;
         closeWin();
-        let client = hypr.clients.filter(
-          (c) => c.initialClass === name[0] || c.initialTitle === name[1],
-        );
         runAppWin.child = Widget.Box({
           class_name: "InstanceBox",
           vertical: true,

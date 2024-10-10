@@ -17,7 +17,7 @@ const wifiSelectionMenu = () =>
           .sort((a, b) => b.strength - a.strength)
           .slice(0, 9)
           .map((ssid) => {
-            const passRevealer = () =>
+            const passRevealer =
               Widget.Revealer({
                 transition: "slide_down",
                 child: Widget.Box({
@@ -34,7 +34,7 @@ const wifiSelectionMenu = () =>
                       visibility: false, // Password dots
                       onAccept: (self) => {
                         console.log(connectAttempt);
-                        passRevealer().reveal_child = false;
+                        passRevealer.reveal_child = false;
                         Utils.execAsync(
                           `nmcli device wifi connect '${connectAttempt}' password '${self.text}'`,
                         ).catch((err) => console.log(err));
@@ -45,6 +45,8 @@ const wifiSelectionMenu = () =>
                 setup: (self) =>
                   self.hook(Network, (self) => {
                     console.log(Network.wifi.state);
+		    console.log(ssid.ssid);
+		    console.log(connectAttempt);
                     if (
                       (Network.wifi.state == "failed" ||
                         Network.wifi.state == "need_auth" ||
@@ -56,7 +58,7 @@ const wifiSelectionMenu = () =>
                     }
                   }),
               });
-            const box = () =>
+            const box =
               Widget.Box({
                 class_name: "accessPoint" + ssid + "attributes",
                 hexpand: true,
@@ -93,14 +95,15 @@ const wifiSelectionMenu = () =>
                 Utils.execAsync(
                   `nmcli device wifi connect ${ssid.bssid}`,
                 ).catch((err) => {
-                  console.log(err);
+		  console.log(Network.wifi.state);
+		  console.log("huh!!!");
                 });
               },
               child: Widget.Box({
                 class_name: "wifiContainers",
                 vertical: true,
                 spacing: 3,
-                children: [box(), passRevealer()],
+                children: [box, passRevealer],
               }),
             });
           });

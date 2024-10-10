@@ -1,5 +1,5 @@
 const entry = App.configDir + '/tsAgs/main.ts'
-const outdir = '/home/rudy/.cache/AgsJs'
+const outdir = '/Users/rudy/.cache/AgsJs'
 import App from 'resource:///com/github/Aylur/ags/app.js'
 
 try {
