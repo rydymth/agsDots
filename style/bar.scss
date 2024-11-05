@@ -1,34 +1,36 @@
 @import "./vars";
 @import "./colors";
 
+/*
 .BarCenterBox {
     @include bar;
-    background-color: rgba($theme_base_color, 0.36);
+    background-color: rgba($theme_base_color, 0.05);
     font-weight: 600;
-    margin: 0em 1.5em 0.3em 1.5em;
     padding: 0.1em 0 0.1em 0;
-    border-radius: 1em;
-    /* box-shadow: 0em 0em 0.2em 0.3em #161616; */
+    border-radius: 1em 1em 0em 0em;
+    box-shadow: 0 0 7px 1px #161616 inset;
+}
+*/
+
+.RightBar {
+    padding: 0.45em 1.2em;
+    margin: 0em 0.05em;
+    border-radius: 0.5em;
+    background-color: rgba($theme_bg_color, 0);
+    color: $theme_fg_color;
 }
 
-/* .RightBar { */
-/* padding: 0.45em 1.2em; */
-/* margin: 0em 0.05em; */
-/* border-radius: 0.5em; */
-/* background-color: rgba($theme_base_color, 0.7); */
-/* } */
+.CenterBar {
+    border-radius: 0.5em;
+    background-color: rgba($theme_base_color, 0);
+    padding: 0em 1.2em;
+    margin: 0em 0.5em;
+}
 
-/* .CenterBar { */
-/* border-radius: 0.5em; */
-/* background-color: rgba($theme_base_color, 0.7); */
-/* padding: 0em 1.2em; */
-/* margin: 0em 0.5em; */
-/* } */
-
-/* .LeftBar { */
-/* padding: 0em 1.2em; */
-/* margin: 0em 0.05em; */
-/* color: $theme_fg_color; */
-/* border-radius: 0.5em; */
-/* background-color: rgba($theme_base_color, 0.7) */
-/* } */
+.LeftBar {
+    padding: 0em 1.2em;
+    margin: 0em 0.05em;
+    color: $theme_fg_color;
+    border-radius: 0.5em;
+    background-color: rgba($theme_bg_color, 0);
+}

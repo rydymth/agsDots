@@ -2,18 +2,69 @@
 @import "./colors";
 
 .AppLauncherPart {
-  @include apps;
+    padding: 1.5em;
+    background-color: rgba($theme_bg_color, 0);
+    color: $theme_fg_color;
 }
 
-.AppEntryWidget,
+.ApplicationDisplayBox {
+    background-color: rgba($theme_bg_color, 0.45);
+    padding: 0.45em;
+    border-radius: 1.5em;
+}
+
+.AppItemEventBox {
+    &:hover {
+        background-color: rgba($theme_bg_color, 0.65);
+        border-radius: 1.5em;
+        color: $theme_fg_color;
+        .AppItemLabelAndIcon {
+            padding: 0.25em;
+            margin: 0.25em;
+        }
+    }
+}
+
+.AppEntryWidget {
+    background-color: $theme_bg_color;
+    color: $theme_fg_color;
+    border-radius: 2em;
+    border-color: transparent;
+    padding: 0.7em 1.9em;
+    min-height: 0.5rem;
+    min-width: 5.5em;
+    &:hover {
+        border-color: transparent;
+    }
+}
+
+.SearchFiles {
+    background-color: $theme_bg_color;
+    padding: 1.5em;
+    border-radius: 2em;
+}
+
+.spotlight {
+    background-color: transparent;
+}
+
 .SpotlightEntryBox {
-  min-width: 500px;
+    min-width: 900px;
 }
 
 .SpotSolverHelp {
-  color: $insensitive_fg_color;
+    color: $insensitive_fg_color;
 }
 
 .SpotSolver {
-  color: #c3e88d;
+    color: #c3e88d;
+}
+
+.textBoxEntity {
+    min-width: 150px;
+}
+
+.calcBox {
+    background-color: rgba($theme_bg_color, 0.7);
+    color: $theme_fg_color;
 }

@@ -20,15 +20,48 @@
 .BatteryMainContents {
     padding: 0.3em 0.45em 0.3em 0.3em;
     margin: 0em 0em 0em 0.1em;
-    color: $accent_fg_color;
+    color: $theme_fg_color;
     // background-color: rgba($theme_bg_color, 0.6);
     border-radius: 0.5em 0em 0em 0.5em;
+    .BatteryPercent {
+        color: black;
+    }
 }
 
 .ClockBox {
-    padding: 0 0.5em 0 0;
+    padding: 0.7em 1.2em;
     margin: 0em;
-    color: $accent_fg_color;
-    // background-color: rgba($theme_bg_color, 0.6);
+    color: $theme_fg_color;
+    background-color: rgba($theme_bg_color, 0.6);
     border-radius: 0em 0.5em 0.5em 0em;
+}
+
+.notifLabelTray {
+    padding: 0.2em 0.9em 0.2em 0.9em;
+    background-color: rgba($theme_bg_color, 0.9);
+    border-radius: 4.5em;
+    color: $theme_fg_color;
+}
+
+.notifLabel {
+    color: $theme_fg_color;
+    background-color: rgba($theme_bg_color, 0.9);
+    padding: 1.5em;
+    border-radius: 2.5em;
+}
+
+.SysTray {
+    background-color: rgba($theme_bg_color, 0.6);
+    padding: 0.7em 1.2em;
+    border-radius: 0.5em;
+}
+
+.notifScrollable {
+    margin: 0.3em;
+    background-color: rgba($theme_bg_color, 0.7);
+    min-height: 400px;
+}
+
+.NotifCenter {
+    background-color: rgba($theme_selected_fg_color, 0.7);
 }
